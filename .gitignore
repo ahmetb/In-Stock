@@ -1,0 +1,7 @@
+.DS_Store
+Podfile.lock
+Pods/
+InStock.xcodeworkspace/
+InStock.xcworkspace/
+**/project.xcworkspace/xcuserdata/
+**/xcuserdata/alp.xcuserdatad/xcdebugger/
