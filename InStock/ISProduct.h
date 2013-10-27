@@ -16,4 +16,7 @@
 +(NSArray*)applicableOptionsForIdiom:(ISIdiom)idiom;
 +(NSString*)skuNameForIdiomsAndValues:(NSDictionary*)dict;
 
+@optional
++(NSString*)iconImageName;
+
 @end

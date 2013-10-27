@@ -15,6 +15,11 @@
     return @"iPhone 5c";
 }
 
+
++(NSString *)iconImageName{
+    return @"iphone.png";
+}
+
 +(NSArray *)applicableIdioms{
     return @[N(ISIdiomiPhoneColor),
              N(ISIdiomMobileDeviceCapacity),

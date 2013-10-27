@@ -14,6 +14,10 @@
     return @"iPhone 5s";
 }
 
++(NSString *)iconImageName{
+    return @"iphone.png";
+}
+
 +(NSArray *)applicableIdioms{
     return @[N(ISIdiomiPhoneColor),
              N(ISIdiomMobileDeviceCapacity),

@@ -64,7 +64,19 @@ bool wasCancel;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     id product = [[self.products objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     [[cell textLabel] setText: [product name]];
+    UIImage* icon = [self imageForProduct:product];
+    if (icon){
+        [[cell imageView] setImage:icon];
+    }
+    
     return cell;
+}
+
+-(UIImage*)imageForProduct:(id)product{
+    if ([product respondsToSelector:@selector(iconImageName)]){
+        return [UIImage imageNamed:[product iconImageName]];
+    }
+    return nil;
 }
 
 
