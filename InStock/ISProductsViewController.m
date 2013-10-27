@@ -31,6 +31,20 @@ bool wasCancel;
                       ];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.isNewProductRequested){
+        self.isNewProductRequested = NO; // reset
+        return;
+    } else if ([ISProductsStore lastUsedProduct]){
+        NSLog(@"Last used product record found...");
+        [self performSegueWithIdentifier:kSegueAvailability sender:self];
+    } else {
+        NSLog(@"No last used product found. Pick one.");
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -67,6 +81,7 @@ bool wasCancel;
     self.currentIdioms = idioms;
     self.currentIdiomIndex = 0;
     self.currentDeviceIdioms = [NSMutableDictionary dictionary];
+    self.currentName = [product name];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (!idioms || [idioms count] == 0){
@@ -104,12 +119,14 @@ bool wasCancel;
     
     if (buttonIndex == [options count]){
         NSLog(@"cancel");
-        wasCancel = true;
+        wasCancel = YES;
     } else {
-        wasCancel = false;
+        wasCancel = NO;
         NSArray* options = [self.selectedProduct applicableOptionsForIdiom:idiom];
         NSInteger option = [[options objectAtIndex:buttonIndex] integerValue];
         NSLog(@"%@: %@", [ISIdioms titleForIdiom:idiom], [ISIdioms nameForOption:option inIdiom:idiom]);
+        
+        [self setCurrentName: [[self.currentName stringByAppendingString:@" "] stringByAppendingString:[ISIdioms nameForOption:option inIdiom:idiom]]];
         [self.currentDeviceIdioms setValue:N(option) forKey:[N(idiom) stringValue]];
     }
 }
@@ -120,7 +137,11 @@ bool wasCancel;
     
     if ([[self currentIdioms] count] == self.currentIdiomIndex + 1){
         self.currentSku = [self.selectedProduct skuNameForIdiomsAndValues:self.currentDeviceIdioms];
-        NSLog(@"finished. SKU = %@", self.currentSku);
+        NSLog(@"finished. SKU = %@, Name = %@", self.currentSku, self.currentName);
+        
+        // Save device
+        [ISProductsStore saveProductWithName:self.currentName sku:self.currentSku];
+        [ISProductsStore setLastUsedProductName:self.currentName];
         [self performSegueWithIdentifier:kSegueAvailability sender:self];
     } else {
         // show next idiom
@@ -132,7 +153,7 @@ bool wasCancel;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:kSegueAvailability]){
-        [[segue destinationViewController] setSku:self.currentSku];
+        NSLog(@"Performing segue...");
     } else {
         NSLog(@"unprepared segue %@", [segue identifier]);
     }

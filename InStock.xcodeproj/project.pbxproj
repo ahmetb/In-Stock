@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D33BCCA181DBE1300ADD3D9 /* ISProductsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */; };
+		5D33BCCD181DC45C00ADD3D9 /* ISSavedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BCCC181DC45C00ADD3D9 /* ISSavedProductsViewController.m */; };
 		5DECE04D181C850E003A00E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DECE04C181C850E003A00E1 /* Foundation.framework */; };
 		5DECE04F181C850E003A00E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DECE04E181C850E003A00E1 /* CoreGraphics.framework */; };
 		5DECE051181C850E003A00E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DECE050181C850E003A00E1 /* UIKit.framework */; };
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D33BCC8181DBE1300ADD3D9 /* ISProductsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISProductsStore.h; sourceTree = "<group>"; };
+		5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISProductsStore.m; sourceTree = "<group>"; };
+		5D33BCCB181DC45C00ADD3D9 /* ISSavedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSavedProductsViewController.h; sourceTree = "<group>"; };
+		5D33BCCC181DC45C00ADD3D9 /* ISSavedProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISSavedProductsViewController.m; sourceTree = "<group>"; };
 		5DECE049181C850E003A00E1 /* InStock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InStock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DECE04C181C850E003A00E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5DECE04E181C850E003A00E1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,10 +138,14 @@
 				5DECE081181C99D3003A00E1 /* Model */,
 				5DECE05B181C850E003A00E1 /* ISAppDelegate.h */,
 				5DECE05C181C850E003A00E1 /* ISAppDelegate.m */,
+				5D33BCC8181DBE1300ADD3D9 /* ISProductsStore.h */,
+				5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */,
 				5DECE08D181CDBE0003A00E1 /* ISProductsViewController.h */,
 				5DECE08E181CDBE0003A00E1 /* ISProductsViewController.m */,
 				5DECE099181D0D5F003A00E1 /* ISAvailabilityViewController.h */,
 				5DECE09A181D0D5F003A00E1 /* ISAvailabilityViewController.m */,
+				5D33BCCB181DC45C00ADD3D9 /* ISSavedProductsViewController.h */,
+				5D33BCCC181DC45C00ADD3D9 /* ISSavedProductsViewController.m */,
 				5DECE05E181C850E003A00E1 /* Main.storyboard */,
 				5DECE064181C850E003A00E1 /* Images.xcassets */,
 				5DECE053181C850E003A00E1 /* Supporting Files */,
@@ -314,8 +324,10 @@
 				5DECE095181CEC53003A00E1 /* ISIdioms.m in Sources */,
 				5DECE098181D0581003A00E1 /* ISiPhone5c.m in Sources */,
 				5DECE05D181C850E003A00E1 /* ISAppDelegate.m in Sources */,
+				5D33BCCA181DBE1300ADD3D9 /* ISProductsStore.m in Sources */,
 				5DECE08F181CDBE0003A00E1 /* ISProductsViewController.m in Sources */,
 				5DECE08C181CA6F0003A00E1 /* ISiPhone4s.m in Sources */,
+				5D33BCCD181DC45C00ADD3D9 /* ISSavedProductsViewController.m in Sources */,
 				5DECE059181C850E003A00E1 /* main.m in Sources */,
 				5DECE093181CE6F8003A00E1 /* ISiPhone5s.m in Sources */,
 				5DECE09B181D0D5F003A00E1 /* ISAvailabilityViewController.m in Sources */,

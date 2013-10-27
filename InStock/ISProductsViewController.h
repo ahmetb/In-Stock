@@ -12,6 +12,8 @@
 
 @interface ISProductsViewController : UITableViewController <UIActionSheetDelegate>
 
+@property (nonatomic, assign) BOOL isNewProductRequested;
+
 @property (nonatomic, retain) NSArray* products;
 
 @property (nonatomic, retain) id selectedProduct;
@@ -19,5 +21,6 @@
 @property (nonatomic, assign) NSInteger currentIdiomIndex;
 @property (nonatomic, retain) NSMutableDictionary* currentDeviceIdioms;
 @property (nonatomic, retain) NSString* currentSku;
+@property (nonatomic, retain) NSString* currentName;
 
 @end

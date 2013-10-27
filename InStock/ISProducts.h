@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Luminous Apps. All rights reserved.
 //
 
+#import "ISProductsStore.h"
+
 #import "ISiPhone4s.h"
 #import "ISiPhone5s.h"
 #import "ISiPhone5c.h"
