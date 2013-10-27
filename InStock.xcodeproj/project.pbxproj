@@ -14,11 +14,15 @@
 		5DECE059181C850E003A00E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE058181C850E003A00E1 /* main.m */; };
 		5DECE05D181C850E003A00E1 /* ISAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE05C181C850E003A00E1 /* ISAppDelegate.m */; };
 		5DECE060181C850E003A00E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DECE05E181C850E003A00E1 /* Main.storyboard */; };
-		5DECE063181C850E003A00E1 /* ISViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE062181C850E003A00E1 /* ISViewController.m */; };
 		5DECE065181C850E003A00E1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DECE064181C850E003A00E1 /* Images.xcassets */; };
 		5DECE06C181C850E003A00E1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DECE06B181C850E003A00E1 /* XCTest.framework */; };
 		5DECE06D181C850E003A00E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DECE04C181C850E003A00E1 /* Foundation.framework */; };
 		5DECE06E181C850E003A00E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DECE050181C850E003A00E1 /* UIKit.framework */; };
+		5DECE08C181CA6F0003A00E1 /* ISiPhone4s.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE08B181CA6F0003A00E1 /* ISiPhone4s.m */; };
+		5DECE08F181CDBE0003A00E1 /* ISProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE08E181CDBE0003A00E1 /* ISProductsViewController.m */; };
+		5DECE093181CE6F8003A00E1 /* ISiPhone5s.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE092181CE6F8003A00E1 /* ISiPhone5s.m */; };
+		5DECE095181CEC53003A00E1 /* ISIdioms.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE094181CEC53003A00E1 /* ISIdioms.m */; };
+		5DECE098181D0581003A00E1 /* ISiPhone5c.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE097181D0581003A00E1 /* ISiPhone5c.m */; };
 		D5ED03ECD6C3491B8F56779A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B05414047EEF460CADCF2789 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -44,11 +48,21 @@
 		5DECE05B181C850E003A00E1 /* ISAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISAppDelegate.h; sourceTree = "<group>"; };
 		5DECE05C181C850E003A00E1 /* ISAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISAppDelegate.m; sourceTree = "<group>"; };
 		5DECE05F181C850E003A00E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5DECE061181C850E003A00E1 /* ISViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISViewController.h; sourceTree = "<group>"; };
-		5DECE062181C850E003A00E1 /* ISViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISViewController.m; sourceTree = "<group>"; };
 		5DECE064181C850E003A00E1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5DECE06A181C850E003A00E1 /* InStockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InStockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DECE06B181C850E003A00E1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5DECE082181C99EA003A00E1 /* ISIdioms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISIdioms.h; sourceTree = "<group>"; };
+		5DECE089181CA352003A00E1 /* ISProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISProduct.h; sourceTree = "<group>"; };
+		5DECE08A181CA6F0003A00E1 /* ISiPhone4s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPhone4s.h; sourceTree = "<group>"; };
+		5DECE08B181CA6F0003A00E1 /* ISiPhone4s.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPhone4s.m; sourceTree = "<group>"; };
+		5DECE08D181CDBE0003A00E1 /* ISProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISProductsViewController.h; sourceTree = "<group>"; };
+		5DECE08E181CDBE0003A00E1 /* ISProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISProductsViewController.m; sourceTree = "<group>"; };
+		5DECE090181CDCC4003A00E1 /* ISProducts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISProducts.h; sourceTree = "<group>"; };
+		5DECE091181CE6F8003A00E1 /* ISiPhone5s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPhone5s.h; sourceTree = "<group>"; };
+		5DECE092181CE6F8003A00E1 /* ISiPhone5s.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPhone5s.m; sourceTree = "<group>"; };
+		5DECE094181CEC53003A00E1 /* ISIdioms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISIdioms.m; sourceTree = "<group>"; };
+		5DECE096181D0581003A00E1 /* ISiPhone5c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPhone5c.h; sourceTree = "<group>"; };
+		5DECE097181D0581003A00E1 /* ISiPhone5c.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPhone5c.m; sourceTree = "<group>"; };
 		B05414047EEF460CADCF2789 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF533665C0D14D27AE358086 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,11 +126,12 @@
 		5DECE052181C850E003A00E1 /* InStock */ = {
 			isa = PBXGroup;
 			children = (
+				5DECE081181C99D3003A00E1 /* Model */,
 				5DECE05B181C850E003A00E1 /* ISAppDelegate.h */,
 				5DECE05C181C850E003A00E1 /* ISAppDelegate.m */,
+				5DECE08D181CDBE0003A00E1 /* ISProductsViewController.h */,
+				5DECE08E181CDBE0003A00E1 /* ISProductsViewController.m */,
 				5DECE05E181C850E003A00E1 /* Main.storyboard */,
-				5DECE061181C850E003A00E1 /* ISViewController.h */,
-				5DECE062181C850E003A00E1 /* ISViewController.m */,
 				5DECE064181C850E003A00E1 /* Images.xcassets */,
 				5DECE053181C850E003A00E1 /* Supporting Files */,
 			);
@@ -132,6 +147,31 @@
 				5DECE05A181C850E003A00E1 /* InStock-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5DECE081181C99D3003A00E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DECE085181CA27F003A00E1 /* Devices */,
+				5DECE082181C99EA003A00E1 /* ISIdioms.h */,
+				5DECE094181CEC53003A00E1 /* ISIdioms.m */,
+				5DECE090181CDCC4003A00E1 /* ISProducts.h */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5DECE085181CA27F003A00E1 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				5DECE089181CA352003A00E1 /* ISProduct.h */,
+				5DECE08A181CA6F0003A00E1 /* ISiPhone4s.h */,
+				5DECE08B181CA6F0003A00E1 /* ISiPhone4s.m */,
+				5DECE091181CE6F8003A00E1 /* ISiPhone5s.h */,
+				5DECE092181CE6F8003A00E1 /* ISiPhone5s.m */,
+				5DECE096181D0581003A00E1 /* ISiPhone5c.h */,
+				5DECE097181D0581003A00E1 /* ISiPhone5c.m */,
+			);
+			name = Devices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DECE095181CEC53003A00E1 /* ISIdioms.m in Sources */,
+				5DECE098181D0581003A00E1 /* ISiPhone5c.m in Sources */,
 				5DECE05D181C850E003A00E1 /* ISAppDelegate.m in Sources */,
+				5DECE08F181CDBE0003A00E1 /* ISProductsViewController.m in Sources */,
+				5DECE08C181CA6F0003A00E1 /* ISiPhone4s.m in Sources */,
 				5DECE059181C850E003A00E1 /* main.m in Sources */,
-				5DECE063181C850E003A00E1 /* ISViewController.m in Sources */,
+				5DECE093181CE6F8003A00E1 /* ISiPhone5s.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +434,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InStock/InStock-Prefix.pch";
 				INFOPLIST_FILE = "InStock/InStock-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -405,7 +449,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InStock/InStock-Prefix.pch";
 				INFOPLIST_FILE = "InStock/InStock-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

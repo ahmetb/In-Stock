@@ -10,6 +10,8 @@
 
 @interface ISAppDelegate : UIResponder <UIApplicationDelegate>
 
+extern NSArray* PRODUCTS;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @end
