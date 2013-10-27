@@ -25,19 +25,10 @@ bool wasCancel;
     self.products = @[
                       @[
                           [ISiPhone4s class],
-                        ],
-                      @[
                           [ISiPhone5s class],
                           [ISiPhone5c class],
                         ],
-                      
                       ];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -136,7 +127,6 @@ bool wasCancel;
         [self showActionSheetForIdiom:self.currentIdiomIndex + 1];
     }
 }
-
 
 #pragma mark Segue methods
 
