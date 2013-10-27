@@ -71,7 +71,7 @@
         (carrier == ISNetworkCarrierVerizon) ? 60 :
         (carrier == ISNetworkCarrierTmobileContractFree) ? 36 : 0; //(..UnlockedSimFree)
     } else { // 32 GB
-        baseFormat = @"ME%dLL/A";
+        baseFormat = @"MF%dLL/A";
         carrFactor = (carrier == ISNetworkCarrierAtt) ? 5 :
         (carrier == ISNetworkCarrierSprint) ? 30 :
         (carrier == ISNetworkCarrierVerizon) ? 25 :

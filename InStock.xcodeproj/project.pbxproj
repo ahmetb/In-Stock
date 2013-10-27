@@ -23,6 +23,7 @@
 		5DECE093181CE6F8003A00E1 /* ISiPhone5s.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE092181CE6F8003A00E1 /* ISiPhone5s.m */; };
 		5DECE095181CEC53003A00E1 /* ISIdioms.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE094181CEC53003A00E1 /* ISIdioms.m */; };
 		5DECE098181D0581003A00E1 /* ISiPhone5c.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE097181D0581003A00E1 /* ISiPhone5c.m */; };
+		5DECE09B181D0D5F003A00E1 /* ISAvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DECE09A181D0D5F003A00E1 /* ISAvailabilityViewController.m */; };
 		D5ED03ECD6C3491B8F56779A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B05414047EEF460CADCF2789 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,8 @@
 		5DECE094181CEC53003A00E1 /* ISIdioms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISIdioms.m; sourceTree = "<group>"; };
 		5DECE096181D0581003A00E1 /* ISiPhone5c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPhone5c.h; sourceTree = "<group>"; };
 		5DECE097181D0581003A00E1 /* ISiPhone5c.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPhone5c.m; sourceTree = "<group>"; };
+		5DECE099181D0D5F003A00E1 /* ISAvailabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISAvailabilityViewController.h; path = ../../../Dropbox/ISAvailabilityViewController.h; sourceTree = "<group>"; };
+		5DECE09A181D0D5F003A00E1 /* ISAvailabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ISAvailabilityViewController.m; path = ../../../Dropbox/ISAvailabilityViewController.m; sourceTree = "<group>"; };
 		B05414047EEF460CADCF2789 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF533665C0D14D27AE358086 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +134,8 @@
 				5DECE05C181C850E003A00E1 /* ISAppDelegate.m */,
 				5DECE08D181CDBE0003A00E1 /* ISProductsViewController.h */,
 				5DECE08E181CDBE0003A00E1 /* ISProductsViewController.m */,
+				5DECE099181D0D5F003A00E1 /* ISAvailabilityViewController.h */,
+				5DECE09A181D0D5F003A00E1 /* ISAvailabilityViewController.m */,
 				5DECE05E181C850E003A00E1 /* Main.storyboard */,
 				5DECE064181C850E003A00E1 /* Images.xcassets */,
 				5DECE053181C850E003A00E1 /* Supporting Files */,
@@ -313,6 +318,7 @@
 				5DECE08C181CA6F0003A00E1 /* ISiPhone4s.m in Sources */,
 				5DECE059181C850E003A00E1 /* main.m in Sources */,
 				5DECE093181CE6F8003A00E1 /* ISiPhone5s.m in Sources */,
+				5DECE09B181D0D5F003A00E1 /* ISAvailabilityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

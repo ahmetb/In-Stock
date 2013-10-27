@@ -7,6 +7,7 @@
 //
 
 #import "ISProductsViewController.h"
+#import "ISAvailabilityViewController.h"
 #import "ISProducts.h"
 #import <FlatUIKit/UITableViewCell+FlatUI.h>
 
@@ -78,7 +79,7 @@ bool wasCancel;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (!idioms || [idioms count] == 0){
-        NSLog(@"save device & perform segue");
+        [self performSegueWithIdentifier:kSegueAvailability sender:self];
     } else {
         [self showActionSheetForIdiom:self.currentIdiomIndex];
     }
@@ -127,10 +128,23 @@ bool wasCancel;
         return;
     
     if ([[self currentIdioms] count] == self.currentIdiomIndex + 1){
-        NSLog(@"finished %@", [self.selectedProduct skuNameForIdiomsAndValues:self.currentDeviceIdioms]);
+        self.currentSku = [self.selectedProduct skuNameForIdiomsAndValues:self.currentDeviceIdioms];
+        NSLog(@"finished. SKU = %@", self.currentSku);
+        [self performSegueWithIdentifier:kSegueAvailability sender:self];
     } else {
         // show next idiom
         [self showActionSheetForIdiom:self.currentIdiomIndex + 1];
+    }
+}
+
+
+#pragma mark Segue methods
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:kSegueAvailability]){
+        [[segue destinationViewController] setSku:self.currentSku];
+    } else {
+        NSLog(@"unprepared segue %@", [segue identifier]);
     }
 }
 

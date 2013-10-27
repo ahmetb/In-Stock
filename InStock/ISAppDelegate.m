@@ -8,8 +8,6 @@
 
 #import "ISAppDelegate.h"
 
-#define IS_appDelegate ((ISAppDelegate *)[[UIApplication sharedApplication] delegate])
-
 @implementation ISAppDelegate
 
 @end

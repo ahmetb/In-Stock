@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define IS_appDelegate ((ISAppDelegate *)[[UIApplication sharedApplication] delegate])
+
 @interface ISAppDelegate : UIResponder <UIApplicationDelegate>
 
 extern NSArray* PRODUCTS;

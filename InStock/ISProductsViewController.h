@@ -8,8 +8,9 @@
 
 #import <FlatUIKit/FlatUIKit.h>
 
-@interface ISProductsViewController : UITableViewController <UIActionSheetDelegate>
+#define kSegueAvailability @"CheckAvailability"
 
+@interface ISProductsViewController : UITableViewController <UIActionSheetDelegate>
 
 @property (nonatomic, retain) NSArray* products;
 
@@ -17,5 +18,6 @@
 @property (nonatomic, retain) NSArray* currentIdioms;
 @property (nonatomic, assign) NSInteger currentIdiomIndex;
 @property (nonatomic, retain) NSMutableDictionary* currentDeviceIdioms;
+@property (nonatomic, retain) NSString* currentSku;
 
 @end
