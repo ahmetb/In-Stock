@@ -112,12 +112,12 @@ CLLocationManager* locationManager;
         // Retrieve zip code, get user's location
         [self retrieveLocation:nil];
     } else {
-        [self retrieveLocation:nil];
         if (![self.sku isEqualToString:lastLoadedSku]){
             [self refresh];
         } else {
             NSLog(@"Showing existing sku %@ listing", self.sku);
         }
+        [self retrieveLocation:nil];
     }
 }
 

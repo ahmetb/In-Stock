@@ -46,7 +46,7 @@
         case ISMacBookScreenSize11inch:
             return (config == ISMacBookAirConfiguration1_3GHz_i5_4GBMemory_128GBDisk) ? @"MD711LL/A" : @"MD712LL/A";
         case ISMacBookScreenSize13inch:
-            return (config == ISMacBookAirConfiguration1_3GHz_i5_4GBMemory_128GBDisk) ? @"MD706LL/A" : @"MD761LL/A";
+            return (config == ISMacBookAirConfiguration1_3GHz_i5_4GBMemory_128GBDisk) ? @"MD760LL/A" : @"MD761LL/A";
         default:
             break;
     }
