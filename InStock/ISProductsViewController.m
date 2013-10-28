@@ -38,7 +38,8 @@ bool wasCancel;
                       @[
                           [ISMacBookProRetina class],
                           [ISMacBookPro class],
-                          [ISMacBookAir class]
+                          [ISMacBookAir class],
+                          [ISMacMini class],
                         ]
                       ];
     
@@ -68,6 +69,9 @@ bool wasCancel;
 -(void)bannerViewDidLoadAd:(ADBannerView *)banner{
     NSLog(@"Banner loaded.");
     [self.tableView setTableHeaderView:self.banner];
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
 }
 
 #pragma mark - Table view data source

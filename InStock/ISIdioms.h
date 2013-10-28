@@ -16,7 +16,7 @@
 typedef NS_ENUM(NSInteger, ISIdiom) {
     ISIdiomMobileDeviceCapacity = 0,
     ISIdiomMacBookScreenSize,
-    ISIdiomMacMini,
+    ISIdiomMacMiniConfiguration,
     ISIdiomiMacConfiguration,
     ISIdiomMacProConfiguration,
     ISIdiomMacBookProConfiguration,
@@ -40,10 +40,10 @@ typedef NS_ENUM(NSInteger, ISMacBookScreenSize) {
     ISMacBookScreenSize15inch
 };
 
-typedef NS_ENUM(NSInteger, ISMacMini) {
-    ISMacMini2_5GHz = 0,
-    ISMacMini2_3GHz,
-    ISMacMini2_3GHzWithOsXServer
+typedef NS_ENUM(NSInteger, ISMacMiniConfiguration) {
+    ISMacMiniConfiguration2_5GHz = 0,
+    ISMacMiniConfiguration2_3GHz,
+    ISMacMiniConfiguration2_3GHzWithOsXServer
 };
 
 typedef NS_ENUM(NSInteger, ISiMacConfiguration) {

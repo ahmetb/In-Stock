@@ -17,6 +17,7 @@
 		5D123ED2181E3257001BC7F7 /* ISMacBookPro.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123ED1181E3257001BC7F7 /* ISMacBookPro.m */; };
 		5D123ED5181E32F0001BC7F7 /* ISMacBookProRetina.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123ED4181E32F0001BC7F7 /* ISMacBookProRetina.m */; };
 		5D123ED8181E38B1001BC7F7 /* ISMacBookAir.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123ED7181E38B1001BC7F7 /* ISMacBookAir.m */; };
+		5D123EDB181E4C28001BC7F7 /* ISMacMini.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EDA181E4C28001BC7F7 /* ISMacMini.m */; };
 		5D33BCCA181DBE1300ADD3D9 /* ISProductsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */; };
 		5D33BCCD181DC45C00ADD3D9 /* ISSavedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BCCC181DC45C00ADD3D9 /* ISSavedProductsViewController.m */; };
 		5D33BCD2181DDAA800ADD3D9 /* locate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BCD1181DDAA800ADD3D9 /* locate.png */; };
@@ -77,6 +78,8 @@
 		5D123ED4181E32F0001BC7F7 /* ISMacBookProRetina.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISMacBookProRetina.m; sourceTree = "<group>"; };
 		5D123ED6181E38B1001BC7F7 /* ISMacBookAir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISMacBookAir.h; sourceTree = "<group>"; };
 		5D123ED7181E38B1001BC7F7 /* ISMacBookAir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISMacBookAir.m; sourceTree = "<group>"; };
+		5D123ED9181E4C28001BC7F7 /* ISMacMini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISMacMini.h; sourceTree = "<group>"; };
+		5D123EDA181E4C28001BC7F7 /* ISMacMini.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISMacMini.m; sourceTree = "<group>"; };
 		5D33BCC8181DBE1300ADD3D9 /* ISProductsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISProductsStore.h; sourceTree = "<group>"; };
 		5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISProductsStore.m; sourceTree = "<group>"; };
 		5D33BCCB181DC45C00ADD3D9 /* ISSavedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSavedProductsViewController.h; sourceTree = "<group>"; };
@@ -232,7 +235,7 @@
 		5DECE081181C99D3003A00E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5DECE085181CA27F003A00E1 /* Devices */,
+				5DECE085181CA27F003A00E1 /* Products */,
 				5DECE082181C99EA003A00E1 /* ISIdioms.h */,
 				5DECE094181CEC53003A00E1 /* ISIdioms.m */,
 				5DECE090181CDCC4003A00E1 /* ISProducts.h */,
@@ -242,7 +245,7 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		5DECE085181CA27F003A00E1 /* Devices */ = {
+		5DECE085181CA27F003A00E1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				5DECE089181CA352003A00E1 /* ISProduct.h */,
@@ -266,8 +269,10 @@
 				5D123ED4181E32F0001BC7F7 /* ISMacBookProRetina.m */,
 				5D123ED6181E38B1001BC7F7 /* ISMacBookAir.h */,
 				5D123ED7181E38B1001BC7F7 /* ISMacBookAir.m */,
+				5D123ED9181E4C28001BC7F7 /* ISMacMini.h */,
+				5D123EDA181E4C28001BC7F7 /* ISMacMini.m */,
 			);
-			name = Devices;
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +425,7 @@
 				5D33BCCA181DBE1300ADD3D9 /* ISProductsStore.m in Sources */,
 				5DECE08F181CDBE0003A00E1 /* ISProductsViewController.m in Sources */,
 				5D123ECA181E1818001BC7F7 /* ISiPadAir.m in Sources */,
+				5D123EDB181E4C28001BC7F7 /* ISMacMini.m in Sources */,
 				5D123EC4181E0EC6001BC7F7 /* ISiPadMini.m in Sources */,
 				5D123EC7181E10E1001BC7F7 /* ISiPadMiniRetina.m in Sources */,
 				5D123EBE181DF0EC001BC7F7 /* ISAvailabilityViewController.m in Sources */,

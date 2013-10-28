@@ -50,7 +50,7 @@
         case ISiPadTypeWifi:
             switch (color) {
                 case ISiPhoneColorSpaceGray:
-                    return @"MF342LL/A";
+                    return @"MF432LL/A";
                 case ISiPhoneColorSilver:
                     return @"MD531LL/A";
                 default:{

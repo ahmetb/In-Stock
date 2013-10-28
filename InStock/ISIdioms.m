@@ -14,7 +14,7 @@
     id names = @{
                  N(ISIdiomMobileDeviceCapacity) : @"Choose a model",
                  N(ISIdiomMacBookScreenSize) : @"Select display size",
-                 N(ISIdiomMacMini) : @"Select your Mac mini",
+                 N(ISIdiomMacMiniConfiguration) : @"Select your Mac mini",
                  N(ISIdiomiMacConfiguration) : @"Select your iMac",
                  N(ISIdiomMacProConfiguration) : @"Select your Mac Pro",
                  N(ISIdiomMacBookProConfiguration) : @"Select your MacBook Pro",
@@ -69,10 +69,10 @@
                  N(ISMacBookScreenSize13inch) : @"13-inch Display",
                  N(ISMacBookScreenSize15inch) : @"15-inch Display"
                  },
-         N(ISIdiomMacMini): @{
-                 N(ISMacMini2_3GHz) : @"2.3 GHz processor",
-                 N(ISMacMini2_5GHz) : @"2.5 GHz processor",
-                 N(ISMacMini2_3GHzWithOsXServer) : @"2.3 GHz with OS X Server"
+         N(ISIdiomMacMiniConfiguration): @{
+                 N(ISMacMiniConfiguration2_3GHz) : @"2.3 GHz i5",
+                 N(ISMacMiniConfiguration2_5GHz) : @"2.5 GHz i5",
+                 N(ISMacMiniConfiguration2_3GHzWithOsXServer) : @"2.3 GHz i7 with OS X Server"
                  },
          N(ISIdiomMacProConfiguration): @{
                  N(ISMacProConfiguration4Core) : @"Quad-core processor",

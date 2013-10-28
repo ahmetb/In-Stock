@@ -38,14 +38,18 @@ CLLocationManager* locationManager;
         // back button was pressed. We know this is true because self is no longer
         // in the navigation stack.
         ISProductsViewController* vc = (ISProductsViewController*)[self.navigationController.viewControllers objectAtIndex:0];
-        [vc setIsNewProductRequested:YES];
+        
+        if ([vc class] == [ISProductsViewController class]){
+            [vc setIsNewProductRequested:YES];
+            NSLog(@"redirecting user to pick a new product");
+        }
     }
     [super viewWillDisappear:animated];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+
     id lastProduct = [ISProductsStore lastUsedProduct];
     if (lastProduct){
         self.sku = [lastProduct objectAtIndex:iProductSku];
@@ -85,6 +89,29 @@ CLLocationManager* locationManager;
     }];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if(![ISProductsStore lastUsedProduct]){
+        lastLoadedSku = nil;
+    }
+    
+    
+    // If location does not exist fetch it first
+    if (![ISProductsStore userZipCode]){
+        // Retrieve zip code, get user's location
+        [self retrieveLocation:nil];
+    } else {
+        [self retrieveLocation:nil];
+        if (![self.sku isEqualToString:lastLoadedSku]){
+            [self refresh];
+        } else {
+            NSLog(@"Showing existing sku %@ listing", self.sku);
+        }
+    }
+}
+
 #pragma mark - iAd Delegate
 
 -(void)bannerViewWillLoadAd:(ADBannerView *)banner{
@@ -96,23 +123,8 @@ CLLocationManager* locationManager;
     [self.tableView setTableHeaderView:self.banner];
 }
 
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    // If location does not exist fetch it first
-    if (![ISProductsStore userZipCode]){
-        // Retrieve zip code, get user's location
-        [self retrieveLocation:nil];
-    } else {
-        if (![self.sku isEqualToString:lastLoadedSku]){
-            [self refresh];
-        } else {
-            NSLog(@"Showing existing sku %@ listing", self.sku);
-        }
-    }
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
 }
-
 
 #pragma mark - Location Manager delegate 
 
@@ -122,8 +134,6 @@ CLLocationManager* locationManager;
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
     }
-    // restart
-    [locationManager stopUpdatingLocation];
     [locationManager startUpdatingLocation];
 }
 
@@ -211,6 +221,7 @@ CLLocationManager* locationManager;
         stores = nil;
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
+        lastLoadedSku = nil;
     }];
 }
 

@@ -15,16 +15,9 @@
 
 @implementation ISSavedProductsViewController
 
-NSString* newSku;
-NSString* newName;
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
 
 -(IBAction)dismiss:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -91,8 +84,7 @@ NSString* newName;
     
     id product = [[ISProductsStore savedProducts] objectAtIndex:indexPath.row];
     NSString* name = [product objectAtIndex:0/*name*/];
-    NSString* sku = [product objectAtIndex:1/*sku*/];
-    newSku = sku;
+//    NSString* sku = [product objectAtIndex:1/*sku*/];
     // Set as last used product
     [ISProductsStore setLastUsedProductName:name];
     

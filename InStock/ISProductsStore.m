@@ -45,6 +45,14 @@
         products = [NSArray array];
     }
     products = [NSMutableArray arrayWithArray:products];
+    
+    // do not add if same name is already there.
+    for (id p in products) {
+        if ([[p objectAtIndex:iProductName] isEqualToString:productName]){
+            return;
+        }
+    }
+    
     [products addObject:@[productName, productSku]];
     [self setSavedProducts:products];
 }
@@ -62,7 +70,7 @@
     id productName = [self settingObjectForKey:kSettingLastProduct];
     if (productName){
         for (NSArray* p in [self savedProducts]) {
-            if ([[p objectAtIndex:iProductName]/* name */ isEqualToString:productName]){
+            if ([[p objectAtIndex:iProductName] isEqualToString:productName]){
                 return p;
             }
         }
