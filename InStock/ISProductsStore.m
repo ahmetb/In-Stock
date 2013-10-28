@@ -10,8 +10,7 @@
 
 @implementation ISProductsStore
 
-
-#pragma mark Consolidated app settings storage
+#pragma mark - Consolidated app settings storage
 
 +(void)saveSettingObject:(id)object forKey:(NSString*)key{
     [[NSUserDefaults standardUserDefaults] setObject:object forKey:key];
@@ -22,9 +21,8 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
-#pragma mark Saved Product Choice Settings
+#pragma mark - Saved Product Choice Settings
 
-#define kSettingLastProduct @"LastProduct"
 #define kSettingProducts @"Products"
 
 +(NSArray*)savedProducts {
@@ -51,6 +49,11 @@
     [self setSavedProducts:products];
 }
 
+
+#pragma mark - Last Used Product Setting
+
+#define kSettingLastProduct @"LastProduct"
+
 +(void)setLastUsedProductName:(NSString*)productName{
     [self saveSettingObject:productName forKey:kSettingLastProduct];
 }
@@ -66,5 +69,17 @@
     }
     return nil;
 }
+
+#pragma mark - Zip Code Setting
+
+#define kSettingZipCode @"PostalCode"
+
++(NSString*)userZipCode{
+    return [self settingObjectForKey:kSettingZipCode];
+}
+
+ +(void)setUserZipCode:(NSString*)zipCode{
+     [self saveSettingObject:zipCode forKey:kSettingZipCode];
+ }
 
 @end

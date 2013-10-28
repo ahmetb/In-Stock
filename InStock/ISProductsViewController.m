@@ -103,7 +103,7 @@ bool wasCancel;
     }
 }
 
-#pragma mark Action sheet operations and delegation
+#pragma mark - Action sheet operations and delegation
 
 -(void) showActionSheetForIdiom:(NSInteger)idiomIndex {
     self.currentIdiomIndex = idiomIndex;
@@ -161,7 +161,7 @@ bool wasCancel;
     }
 }
 
-#pragma mark Segue methods
+#pragma mark - Segue methods
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:kSegueAvailability]){

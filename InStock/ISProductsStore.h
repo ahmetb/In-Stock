@@ -20,4 +20,7 @@
 +(void)setLastUsedProductName:(NSString*)productName;
 +(NSArray*)lastUsedProduct;
 
++(NSString*)userZipCode;
++(void)setUserZipCode:(NSString*)zipCode;
+
 @end
