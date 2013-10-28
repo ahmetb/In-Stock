@@ -92,7 +92,8 @@
                 }
             }
     }
-    return @"Invalid";
+    NSLog(@"Unhandled iPad mini config");
+    return nil;
 }
 
 +(BOOL)shouldAskIdiom:(ISIdiom)idiom forIdiomsAndValues:(NSDictionary*)responses{

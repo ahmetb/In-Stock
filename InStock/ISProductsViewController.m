@@ -9,6 +9,7 @@
 #import "ISProductsViewController.h"
 #import "ISAvailabilityViewController.h"
 #import "ISProducts.h"
+#import <iAd/iAd.h>
 #import <FlatUIKit/UITableViewCell+FlatUI.h>
 
 
@@ -24,31 +25,49 @@ bool wasCancel;
     
     self.products = @[
                       @[
-                          [ISiPhone4s class],
                           [ISiPhone5s class],
                           [ISiPhone5c class],
+                          [ISiPhone4s class],
                         ],
                       @[
-                          [ISiPad2 class],
+                          [ISiPadAir class],
                           [ISiPadMini class],
                           [ISiPadMiniRetina class],
-                          [ISiPadAir class],
+                          [ISiPad2 class],
+                        ],
+                      @[
+                          [ISMacBookProRetina class],
+                          [ISMacBookPro class],
+                          [ISMacBookAir class]
                         ]
                       ];
+    
+    self.banner = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    [self.banner setDelegate:self];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     if (self.isNewProductRequested){
-        self.isNewProductRequested = NO; // reset
         return;
     } else if ([ISProductsStore lastUsedProduct]){
         NSLog(@"Last used product record found...");
         [self performSegueWithIdentifier:kSegueAvailability sender:self];
     } else {
-        NSLog(@"No last used product found. Pick one.");
+        NSLog(@"No last product record found. Listing products...");
     }
+}
+
+#pragma mark - iAd Delegate
+
+-(void)bannerViewWillLoadAd:(ADBannerView *)banner{
+    NSLog(@"Banner upcoming...");
+}
+
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    NSLog(@"Banner loaded.");
+    [self.tableView setTableHeaderView:self.banner];
 }
 
 #pragma mark - Table view data source
@@ -108,11 +127,8 @@ bool wasCancel;
     self.currentName = [product name];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (!idioms || [idioms count] == 0){
-        [self performSegueWithIdentifier:kSegueAvailability sender:self];
-    } else {
-        [self showActionSheetForIdiom:self.currentIdiomIndex];
-    }
+ 
+    [self showActionSheetForIdiom:self.currentIdiomIndex];
 }
 
 #pragma mark - Action sheet operations and delegation
@@ -128,6 +144,7 @@ bool wasCancel;
         // Save device
         [ISProductsStore saveProductWithName:self.currentName sku:self.currentSku];
         [ISProductsStore setLastUsedProductName:self.currentName];
+        self.isNewProductRequested = NO; // reset
         [self performSegueWithIdentifier:kSegueAvailability sender:self];
         return;
     } else {
@@ -142,7 +159,7 @@ bool wasCancel;
             }
         }
         
-        NSArray* options = [self.selectedProduct applicableOptionsForIdiom:idiom];
+        NSArray* options = [self applicableOptionsForSelectedProductForIdiom:idiom];
         NSMutableArray* optionTitles = [NSMutableArray arrayWithCapacity:[options count]];
         for (id opt in options) {
             [optionTitles addObject:[ISIdioms nameForOption:[opt integerValue] inIdiom:idiom]];
@@ -159,16 +176,21 @@ bool wasCancel;
     }
 }
 
+-(NSArray*)applicableOptionsForSelectedProductForIdiom:(ISIdiom)idiom{
+    if ([self.selectedProduct respondsToSelector:@selector(applicableOptionsForIdiom:inIdiomsAndValues:)]){
+        return [self.selectedProduct applicableOptionsForIdiom:idiom inIdiomsAndValues:self.currentDeviceIdioms];
+    }
+    return [self.selectedProduct applicableOptionsForIdiom:idiom];
+}
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     ISIdiom idiom = [[[self currentIdioms] objectAtIndex:self.currentIdiomIndex] integerValue];
-    NSArray* options = [self.selectedProduct applicableOptionsForIdiom:idiom];
+    NSArray* options = [self applicableOptionsForSelectedProductForIdiom:idiom];
     
     if (buttonIndex == [options count]){
-        NSLog(@"cancel");
         wasCancel = YES;
     } else {
         wasCancel = NO;
-        NSArray* options = [self.selectedProduct applicableOptionsForIdiom:idiom];
         NSInteger option = [[options objectAtIndex:buttonIndex] integerValue];
         NSLog(@"%@: %@", [ISIdioms titleForIdiom:idiom], [ISIdioms nameForOption:option inIdiom:idiom]);
         

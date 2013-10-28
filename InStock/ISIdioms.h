@@ -1,20 +1,26 @@
-//
 //  ISModel.h
 //  InStock
-//
 //  Created by Ahmet Alp Balkan on 10/26/13.
-//  Copyright (c) 2013 Luminous Apps. All rights reserved.
-//
 
 #define N(x) [NSNumber numberWithInteger:x]
 
 
+/*
+    ONLY ADD TO THE END OF ENUMS !!!!!!!!!!! <-----------
+        ONLY ADD TO THE END OF ENUMS !!!!!!! <-----------
+            ONLY ADD TO THE END OF ENUMS !!! <-----------
+        ONLY ADD TO THE END OF ENUMS !!!!!!! <-----------
+    ONLY ADD TO THE END OF ENUMS !!!!!!!!!!! <-----------
+*/
+ 
 typedef NS_ENUM(NSInteger, ISIdiom) {
     ISIdiomMobileDeviceCapacity = 0,
     ISIdiomMacBookScreenSize,
     ISIdiomMacMini,
     ISIdiomiMacConfiguration,
     ISIdiomMacProConfiguration,
+    ISIdiomMacBookProConfiguration,
+    ISIdiomMacBookAirConfiguration,
     ISIdiomiPhoneColor,
     ISIdiomiPadType,
     ISIdiomNetworkCarrier
@@ -46,6 +52,21 @@ typedef NS_ENUM(NSInteger, ISiMacConfiguration) {
     ISiMacConfiguration27_5inch3_2GHz,
     ISiMacConfiguration27_5inch3_4GHz
 };
+
+typedef NS_ENUM(NSInteger, ISMacBookProConfiguration) {
+    ISMacBookProConfiguration2_4GHz_i5_4GBMemory_128GBDisk = 0,
+    ISMacBookProConfiguration2_4GHz_i5_8GBMemory_256GBDisk,
+    ISMacBookProConfiguration2_6GHz_i5_8GBMemory_512GBDisk,
+    ISMacBookProConfiguration2_0GHz_i7_8GBMemory_256GBDisk,
+    ISMacBookProConfiguration2_3GHz_i7_16GBMemory_512GBDisk
+};
+
+
+typedef NS_ENUM(NSInteger, ISMacBookAirConfiguration) {
+    ISMacBookAirConfiguration1_3GHz_i5_4GBMemory_128GBDisk = 0,
+    ISMacBookAirConfiguration1_3GHz_i5_4GBMemory_256GBDisk
+};
+
 
 typedef NS_ENUM(NSInteger, ISMacProConfiguration) {
     ISMacProConfiguration4Core = 0,

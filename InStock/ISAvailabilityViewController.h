@@ -9,12 +9,13 @@
 #import <FlatUIKit/FlatUIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <AddressBook/AddressBook.h>
+#import <iAd/iAd.h>
 
-@interface ISAvailabilityViewController : UITableViewController <UIAlertViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate>
+@interface ISAvailabilityViewController : UITableViewController <UIAlertViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, ADBannerViewDelegate>
 
 @property(weak, nonatomic) NSString* sku;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnRefresh;
-//- (IBAction)refresh:(id)sender;
+@property (retain, nonatomic) ADBannerView* banner;
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import "ISAvailabilityViewController.h"
-#import <AFNetworking/AFNetworking.h>
+#import "ISProductsViewController.h"
 #import "ISProductsStore.h"
+#import <AFNetworking/AFNetworking.h>
 
 @implementation ISAvailabilityViewController
 
@@ -25,6 +26,21 @@ CLLocationManager* locationManager;
     [super viewDidLoad];
     self.navigationController.navigationItem.hidesBackButton = YES;
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+
+    self.banner = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    [self.banner setDelegate:self];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    // If it is going back, prevent auto-redirect in root view controller.
+    
+    if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+        // back button was pressed. We know this is true because self is no longer
+        // in the navigation stack.
+        ISProductsViewController* vc = (ISProductsViewController*)[self.navigationController.viewControllers objectAtIndex:0];
+        [vc setIsNewProductRequested:YES];
+    }
+    [super viewWillDisappear:animated];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -68,6 +84,18 @@ CLLocationManager* locationManager;
         }
     }];
 }
+
+#pragma mark - iAd Delegate
+
+-(void)bannerViewWillLoadAd:(ADBannerView *)banner{
+    NSLog(@"Banner upcoming...");
+}
+
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    NSLog(@"Banner loaded.");
+    [self.tableView setTableHeaderView:self.banner];
+}
+
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

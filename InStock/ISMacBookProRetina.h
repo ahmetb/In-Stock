@@ -1,5 +1,5 @@
 //
-//  ISiPadMiniRetina.h
+//  ISMacBookProRetina.h
 //  InStock
 //
 //  Created by Ahmet Alp Balkan on 10/27/13.
@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ISProduct.h"
 
-@interface ISiPadMiniRetina : NSObject <ISProduct>
+@interface ISMacBookProRetina : NSObject <ISProduct>
 
 @end

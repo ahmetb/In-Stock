@@ -52,9 +52,8 @@
                     return @"MC954LL/A";
                 case ISiPhoneColorWhite:
                     return @"MC989LL/A";
-                default:{
-                    NSLog(@"unhandled color");
-                }
+                default:
+                    break;
             }
         case ISiPadTypeWifiCellular:
             switch (color) {
@@ -65,7 +64,6 @@
                         case ISNetworkCarrierVerizon:
                             return @"MC755LL/A";
                         default:
-                            NSLog(@"unhandled carrier");
                             break;
                     }
                 case ISiPhoneColorWhite:
@@ -78,12 +76,12 @@
                             NSLog(@"unhandled carrier");
                             break;
                     }
-                default:{
-                    NSLog(@"unhandled color");
-                }
+                default:
+                    break;
             }
     }
-    return @"Invalid";
+    NSLog(@"Unhandled iPad mini config");
+    return nil;
 }
 
 +(BOOL)shouldAskIdiom:(ISIdiom)idiom forIdiomsAndValues:(NSDictionary*)responses{

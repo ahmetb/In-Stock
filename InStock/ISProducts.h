@@ -15,3 +15,6 @@
 #import "ISiPadMini.h"
 #import "ISiPadMiniRetina.h"
 #import "ISiPadAir.h"
+#import "IsMacBookPro.h"
+#import "IsMacBookProRetina.h"
+#import "IsMacBookAir.h"

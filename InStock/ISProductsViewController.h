@@ -7,10 +7,11 @@
 //
 
 #import <FlatUIKit/FlatUIKit.h>
+#import <iAd/iAd.h>
 
 #define kSegueAvailability @"CheckAvailability"
 
-@interface ISProductsViewController : UITableViewController <UIActionSheetDelegate>
+@interface ISProductsViewController : UITableViewController <UIActionSheetDelegate, ADBannerViewDelegate>
 
 @property (nonatomic, assign) BOOL isNewProductRequested;
 
@@ -22,5 +23,7 @@
 @property (nonatomic, retain) NSMutableDictionary* currentDeviceIdioms;
 @property (nonatomic, retain) NSString* currentSku;
 @property (nonatomic, retain) NSString* currentName;
+
+@property (nonatomic, retain) ADBannerView* banner;
 
 @end

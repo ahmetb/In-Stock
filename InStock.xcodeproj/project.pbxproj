@@ -13,6 +13,10 @@
 		5D123EC4181E0EC6001BC7F7 /* ISiPadMini.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EC3181E0EC6001BC7F7 /* ISiPadMini.m */; };
 		5D123EC7181E10E1001BC7F7 /* ISiPadMiniRetina.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EC6181E10E1001BC7F7 /* ISiPadMiniRetina.m */; };
 		5D123ECA181E1818001BC7F7 /* ISiPadAir.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EC9181E1818001BC7F7 /* ISiPadAir.m */; };
+		5D123ECC181E1BE0001BC7F7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D123ECB181E1BE0001BC7F7 /* iAd.framework */; };
+		5D123ED2181E3257001BC7F7 /* ISMacBookPro.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123ED1181E3257001BC7F7 /* ISMacBookPro.m */; };
+		5D123ED5181E32F0001BC7F7 /* ISMacBookProRetina.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123ED4181E32F0001BC7F7 /* ISMacBookProRetina.m */; };
+		5D123ED8181E38B1001BC7F7 /* ISMacBookAir.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123ED7181E38B1001BC7F7 /* ISMacBookAir.m */; };
 		5D33BCCA181DBE1300ADD3D9 /* ISProductsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */; };
 		5D33BCCD181DC45C00ADD3D9 /* ISSavedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BCCC181DC45C00ADD3D9 /* ISSavedProductsViewController.m */; };
 		5D33BCD2181DDAA800ADD3D9 /* locate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BCD1181DDAA800ADD3D9 /* locate.png */; };
@@ -66,6 +70,13 @@
 		5D123EC6181E10E1001BC7F7 /* ISiPadMiniRetina.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPadMiniRetina.m; sourceTree = "<group>"; };
 		5D123EC8181E1818001BC7F7 /* ISiPadAir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPadAir.h; sourceTree = "<group>"; };
 		5D123EC9181E1818001BC7F7 /* ISiPadAir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPadAir.m; sourceTree = "<group>"; };
+		5D123ECB181E1BE0001BC7F7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		5D123ED0181E3257001BC7F7 /* ISMacBookPro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISMacBookPro.h; sourceTree = "<group>"; };
+		5D123ED1181E3257001BC7F7 /* ISMacBookPro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISMacBookPro.m; sourceTree = "<group>"; };
+		5D123ED3181E32F0001BC7F7 /* ISMacBookProRetina.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISMacBookProRetina.h; sourceTree = "<group>"; };
+		5D123ED4181E32F0001BC7F7 /* ISMacBookProRetina.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISMacBookProRetina.m; sourceTree = "<group>"; };
+		5D123ED6181E38B1001BC7F7 /* ISMacBookAir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISMacBookAir.h; sourceTree = "<group>"; };
+		5D123ED7181E38B1001BC7F7 /* ISMacBookAir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISMacBookAir.m; sourceTree = "<group>"; };
 		5D33BCC8181DBE1300ADD3D9 /* ISProductsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISProductsStore.h; sourceTree = "<group>"; };
 		5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISProductsStore.m; sourceTree = "<group>"; };
 		5D33BCCB181DC45C00ADD3D9 /* ISSavedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSavedProductsViewController.h; sourceTree = "<group>"; };
@@ -115,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D123ECC181E1BE0001BC7F7 /* iAd.framework in Frameworks */,
 				5D123EBB181DE102001BC7F7 /* CoreLocation.framework in Frameworks */,
 				5DECE04F181C850E003A00E1 /* CoreGraphics.framework in Frameworks */,
 				5DECE051181C850E003A00E1 /* UIKit.framework in Frameworks */,
@@ -175,6 +187,7 @@
 		5DECE04B181C850E003A00E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D123ECB181E1BE0001BC7F7 /* iAd.framework */,
 				5D123EBA181DE102001BC7F7 /* CoreLocation.framework */,
 				5DECE04C181C850E003A00E1 /* Foundation.framework */,
 				5DECE04E181C850E003A00E1 /* CoreGraphics.framework */,
@@ -247,6 +260,12 @@
 				5D123EC6181E10E1001BC7F7 /* ISiPadMiniRetina.m */,
 				5D123EC8181E1818001BC7F7 /* ISiPadAir.h */,
 				5D123EC9181E1818001BC7F7 /* ISiPadAir.m */,
+				5D123ED0181E3257001BC7F7 /* ISMacBookPro.h */,
+				5D123ED1181E3257001BC7F7 /* ISMacBookPro.m */,
+				5D123ED3181E32F0001BC7F7 /* ISMacBookProRetina.h */,
+				5D123ED4181E32F0001BC7F7 /* ISMacBookProRetina.m */,
+				5D123ED6181E38B1001BC7F7 /* ISMacBookAir.h */,
+				5D123ED7181E38B1001BC7F7 /* ISMacBookAir.m */,
 			);
 			name = Devices;
 			sourceTree = "<group>";
@@ -397,14 +416,17 @@
 				5DECE095181CEC53003A00E1 /* ISIdioms.m in Sources */,
 				5DECE098181D0581003A00E1 /* ISiPhone5c.m in Sources */,
 				5DECE05D181C850E003A00E1 /* ISAppDelegate.m in Sources */,
+				5D123ED2181E3257001BC7F7 /* ISMacBookPro.m in Sources */,
 				5D33BCCA181DBE1300ADD3D9 /* ISProductsStore.m in Sources */,
 				5DECE08F181CDBE0003A00E1 /* ISProductsViewController.m in Sources */,
 				5D123ECA181E1818001BC7F7 /* ISiPadAir.m in Sources */,
 				5D123EC4181E0EC6001BC7F7 /* ISiPadMini.m in Sources */,
 				5D123EC7181E10E1001BC7F7 /* ISiPadMiniRetina.m in Sources */,
 				5D123EBE181DF0EC001BC7F7 /* ISAvailabilityViewController.m in Sources */,
+				5D123ED5181E32F0001BC7F7 /* ISMacBookProRetina.m in Sources */,
 				5DECE08C181CA6F0003A00E1 /* ISiPhone4s.m in Sources */,
 				5D33BCCD181DC45C00ADD3D9 /* ISSavedProductsViewController.m in Sources */,
+				5D123ED8181E38B1001BC7F7 /* ISMacBookAir.m in Sources */,
 				5DECE059181C850E003A00E1 /* main.m in Sources */,
 				5DECE093181CE6F8003A00E1 /* ISiPhone5s.m in Sources */,
 			);

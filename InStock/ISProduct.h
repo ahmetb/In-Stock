@@ -19,6 +19,7 @@
 @optional
 +(NSString*)fullName;
 +(NSString*)iconImageName;
++(NSArray*)applicableOptionsForIdiom:(ISIdiom)idiom inIdiomsAndValues:(NSDictionary*)responses;
 +(BOOL)shouldAskIdiom:(ISIdiom)idiom forIdiomsAndValues:(NSDictionary*)responses;
 
 @end

@@ -121,7 +121,8 @@
             }
             break;
     }
-    return @"Invalid";
+    NSLog(@"Unhandled iPad type");
+    return nil;
 }
 
 +(BOOL)shouldAskIdiom:(ISIdiom)idiom forIdiomsAndValues:(NSDictionary*)responses{
