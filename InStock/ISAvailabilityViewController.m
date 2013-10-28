@@ -19,6 +19,7 @@ NSString* lastLoadedSku;
 NSString* lastPhoneNumber;
 NSUInteger lastStoreIndex;
 BOOL canOpenGoogleMaps = NO;
+BOOL backFromAd;
 
 CLLocationManager* locationManager;
 
@@ -32,8 +33,9 @@ CLLocationManager* locationManager;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    // If it is going back, prevent auto-redirect in root view controller.
+    [locationManager stopUpdatingLocation];
     
+    // If it is going back, prevent auto-redirect in root view controller.
     if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
         // back button was pressed. We know this is true because self is no longer
         // in the navigation stack.
@@ -49,7 +51,7 @@ CLLocationManager* locationManager;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
     id lastProduct = [ISProductsStore lastUsedProduct];
     if (lastProduct){
         self.sku = [lastProduct objectAtIndex:iProductSku];
@@ -65,28 +67,30 @@ CLLocationManager* locationManager;
         stores = nil;
     }
     
-    operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://store.apple.com"]];
-    id responseSerializer = [AFJSONResponseSerializer serializer];
-    id acceptedTypes = [NSMutableSet setWithSet:[responseSerializer acceptableContentTypes]];
-    [acceptedTypes addObject:@"application/x-json"];
-    [responseSerializer setAcceptableContentTypes:[NSSet setWithSet:acceptedTypes]];
-    [operationManager setResponseSerializer:responseSerializer];
-    
-    NSOperationQueue *operationQueue = operationManager.operationQueue;
-    [operationManager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-                NSLog(@"API connectivity on.");
-                [operationQueue setSuspended:NO];
-                break;
-            case AFNetworkReachabilityStatusNotReachable:
-            default:
-                NSLog(@"API connectivity lost.");
-                [operationQueue setSuspended:YES];
-                break;
-        }
-    }];
+    if (!operationManager){
+        operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://store.apple.com"]];
+        id responseSerializer = [AFJSONResponseSerializer serializer];
+        id acceptedTypes = [NSMutableSet setWithSet:[responseSerializer acceptableContentTypes]];
+        [acceptedTypes addObject:@"application/x-json"];
+        [responseSerializer setAcceptableContentTypes:[NSSet setWithSet:acceptedTypes]];
+        [operationManager setResponseSerializer:responseSerializer];
+        
+        NSOperationQueue *operationQueue = operationManager.operationQueue;
+        [operationManager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            switch (status) {
+                case AFNetworkReachabilityStatusReachableViaWWAN:
+                case AFNetworkReachabilityStatusReachableViaWiFi:
+                    NSLog(@"API connectivity on.");
+                    [operationQueue setSuspended:NO];
+                    break;
+                case AFNetworkReachabilityStatusNotReachable:
+                default:
+                    NSLog(@"API connectivity lost.");
+                    [operationQueue setSuspended:YES];
+                    break;
+            }
+        }];
+    }
 }
 
 
@@ -97,6 +101,11 @@ CLLocationManager* locationManager;
         lastLoadedSku = nil;
     }
     
+    if (backFromAd){
+        NSLog(@"back from ad");
+        backFromAd = NO;
+        return;
+    }
     
     // If location does not exist fetch it first
     if (![ISProductsStore userZipCode]){
@@ -124,6 +133,11 @@ CLLocationManager* locationManager;
 }
 
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+}
+
+-(BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave{
+    backFromAd = !willLeave;
+    return YES;
 }
 
 #pragma mark - Location Manager delegate 
@@ -250,6 +264,9 @@ CLLocationManager* locationManager;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([self isStoreAvailableAtIndex:indexPath.row]){
         [self callStoreAtIndex:indexPath.row];
+    } else {
+        // show action sheet
+        [self tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
     }
 }
 

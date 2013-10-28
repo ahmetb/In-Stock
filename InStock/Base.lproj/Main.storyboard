@@ -24,7 +24,7 @@
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="iPhone 4s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="Qhp-no-W1B" userLabel="Product Name">
                                             <rect key="frame" x="55" y="0.0" width="230" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -87,7 +87,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Nearby Stores" id="GH2-br-qaR">
-                        <barButtonItem key="rightBarButtonItem" image="cart.png" id="534-qJ-r7Z">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="534-qJ-r7Z">
                             <connections>
                                 <segue destination="6KM-tk-l2a" kind="modal" id="mfB-uE-aWg"/>
                             </connections>
@@ -117,7 +117,7 @@
             </objects>
             <point key="canvasLocation" x="591" y="-602"/>
         </scene>
-        <!--Saved Products View Controller - Bookmarks-->
+        <!--Saved Products View Controller - Recent Products-->
         <scene sceneID="NjU-At-XH5">
             <objects>
                 <tableViewController id="O4X-pQ-6gj" customClass="ISSavedProductsViewController" sceneMemberID="viewController">
@@ -151,7 +151,7 @@
                             <outlet property="delegate" destination="O4X-pQ-6gj" id="fBn-GS-Yx7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bookmarks" id="9Dw-qO-sng">
+                    <navigationItem key="navigationItem" title="Recent Products" id="9Dw-qO-sng">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="26U-vo-8Hr">
                             <connections>
                                 <action selector="dismiss:" destination="O4X-pQ-6gj" id="c8x-wx-huR"/>
