@@ -251,10 +251,9 @@ CLLocationManager* locationManager;
 
 #pragma mark - Action Sheet source & delegate
 
-
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
-    actionSheet.title = [self storeNameAtIndex:indexPath.row];
+    actionSheet.title = [self storeOriginalNameAtIndex:indexPath.row];
     actionSheet.delegate = self;
     
     NSURL *gMapsUrlBase = [NSURL URLWithString:@"comgooglemaps://"];
