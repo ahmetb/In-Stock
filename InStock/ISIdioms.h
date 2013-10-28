@@ -74,7 +74,8 @@ typedef NS_ENUM(NSInteger, ISNetworkCarrier) {
     ISNetworkCarrierSprint,
     ISNetworkCarrierVerizon,
     ISNetworkCarrierTmobileContractFree,
-    ISNetworkCarrierUnlockedSimFree
+    ISNetworkCarrierUnlockedSimFree,
+    ISNetworkCarrierTmobile
 };
 
 @interface ISIdioms : NSObject

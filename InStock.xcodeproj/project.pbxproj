@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		5D123EBB181DE102001BC7F7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D123EBA181DE102001BC7F7 /* CoreLocation.framework */; };
 		5D123EBE181DF0EC001BC7F7 /* ISAvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EBD181DF0EC001BC7F7 /* ISAvailabilityViewController.m */; };
+		5D123EC1181DF3D2001BC7F7 /* ISiPad2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EC0181DF3D2001BC7F7 /* ISiPad2.m */; };
+		5D123EC4181E0EC6001BC7F7 /* ISiPadMini.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EC3181E0EC6001BC7F7 /* ISiPadMini.m */; };
+		5D123EC7181E10E1001BC7F7 /* ISiPadMiniRetina.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EC6181E10E1001BC7F7 /* ISiPadMiniRetina.m */; };
+		5D123ECA181E1818001BC7F7 /* ISiPadAir.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D123EC9181E1818001BC7F7 /* ISiPadAir.m */; };
 		5D33BCCA181DBE1300ADD3D9 /* ISProductsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */; };
 		5D33BCCD181DC45C00ADD3D9 /* ISSavedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BCCC181DC45C00ADD3D9 /* ISSavedProductsViewController.m */; };
 		5D33BCD2181DDAA800ADD3D9 /* locate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BCD1181DDAA800ADD3D9 /* locate.png */; };
@@ -54,6 +58,14 @@
 		5D123EBA181DE102001BC7F7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5D123EBC181DF0EC001BC7F7 /* ISAvailabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISAvailabilityViewController.h; sourceTree = "<group>"; };
 		5D123EBD181DF0EC001BC7F7 /* ISAvailabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISAvailabilityViewController.m; sourceTree = "<group>"; };
+		5D123EBF181DF3D2001BC7F7 /* ISiPad2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPad2.h; sourceTree = "<group>"; };
+		5D123EC0181DF3D2001BC7F7 /* ISiPad2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPad2.m; sourceTree = "<group>"; };
+		5D123EC2181E0EC6001BC7F7 /* ISiPadMini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPadMini.h; sourceTree = "<group>"; };
+		5D123EC3181E0EC6001BC7F7 /* ISiPadMini.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPadMini.m; sourceTree = "<group>"; };
+		5D123EC5181E10E1001BC7F7 /* ISiPadMiniRetina.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPadMiniRetina.h; sourceTree = "<group>"; };
+		5D123EC6181E10E1001BC7F7 /* ISiPadMiniRetina.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPadMiniRetina.m; sourceTree = "<group>"; };
+		5D123EC8181E1818001BC7F7 /* ISiPadAir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISiPadAir.h; sourceTree = "<group>"; };
+		5D123EC9181E1818001BC7F7 /* ISiPadAir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISiPadAir.m; sourceTree = "<group>"; };
 		5D33BCC8181DBE1300ADD3D9 /* ISProductsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISProductsStore.h; sourceTree = "<group>"; };
 		5D33BCC9181DBE1300ADD3D9 /* ISProductsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISProductsStore.m; sourceTree = "<group>"; };
 		5D33BCCB181DC45C00ADD3D9 /* ISSavedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSavedProductsViewController.h; sourceTree = "<group>"; };
@@ -227,6 +239,14 @@
 				5DECE092181CE6F8003A00E1 /* ISiPhone5s.m */,
 				5DECE096181D0581003A00E1 /* ISiPhone5c.h */,
 				5DECE097181D0581003A00E1 /* ISiPhone5c.m */,
+				5D123EBF181DF3D2001BC7F7 /* ISiPad2.h */,
+				5D123EC0181DF3D2001BC7F7 /* ISiPad2.m */,
+				5D123EC2181E0EC6001BC7F7 /* ISiPadMini.h */,
+				5D123EC3181E0EC6001BC7F7 /* ISiPadMini.m */,
+				5D123EC5181E10E1001BC7F7 /* ISiPadMiniRetina.h */,
+				5D123EC6181E10E1001BC7F7 /* ISiPadMiniRetina.m */,
+				5D123EC8181E1818001BC7F7 /* ISiPadAir.h */,
+				5D123EC9181E1818001BC7F7 /* ISiPadAir.m */,
 			);
 			name = Devices;
 			sourceTree = "<group>";
@@ -373,11 +393,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D123EC1181DF3D2001BC7F7 /* ISiPad2.m in Sources */,
 				5DECE095181CEC53003A00E1 /* ISIdioms.m in Sources */,
 				5DECE098181D0581003A00E1 /* ISiPhone5c.m in Sources */,
 				5DECE05D181C850E003A00E1 /* ISAppDelegate.m in Sources */,
 				5D33BCCA181DBE1300ADD3D9 /* ISProductsStore.m in Sources */,
 				5DECE08F181CDBE0003A00E1 /* ISProductsViewController.m in Sources */,
+				5D123ECA181E1818001BC7F7 /* ISiPadAir.m in Sources */,
+				5D123EC4181E0EC6001BC7F7 /* ISiPadMini.m in Sources */,
+				5D123EC7181E10E1001BC7F7 /* ISiPadMiniRetina.m in Sources */,
 				5D123EBE181DF0EC001BC7F7 /* ISAvailabilityViewController.m in Sources */,
 				5DECE08C181CA6F0003A00E1 /* ISiPhone4s.m in Sources */,
 				5D33BCCD181DC45C00ADD3D9 /* ISSavedProductsViewController.m in Sources */,

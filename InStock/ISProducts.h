@@ -11,3 +11,7 @@
 #import "ISiPhone4s.h"
 #import "ISiPhone5s.h"
 #import "ISiPhone5c.h"
+#import "ISiPad2.h"
+#import "ISiPadMini.h"
+#import "ISiPadMiniRetina.h"
+#import "ISiPadAir.h"

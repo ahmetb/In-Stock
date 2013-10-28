@@ -28,6 +28,12 @@ bool wasCancel;
                           [ISiPhone5s class],
                           [ISiPhone5c class],
                         ],
+                      @[
+                          [ISiPad2 class],
+                          [ISiPadMini class],
+                          [ISiPadMiniRetina class],
+                          [ISiPadAir class],
+                        ]
                       ];
 }
 
@@ -63,12 +69,18 @@ bool wasCancel;
     static NSString *CellIdentifier = @"ProductCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     id product = [[self.products objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    [[cell textLabel] setText: [product name]];
+    
+    NSString* name;
+    if ([product respondsToSelector:@selector(fullName)]){
+        name = [product fullName];
+    } else {
+        name = [product name];
+    }
+    [[cell textLabel] setText: name];
     UIImage* icon = [self imageForProduct:product];
     if (icon){
         [[cell imageView] setImage:icon];
     }
-    
     return cell;
 }
 
@@ -108,21 +120,43 @@ bool wasCancel;
 -(void) showActionSheetForIdiom:(NSInteger)idiomIndex {
     self.currentIdiomIndex = idiomIndex;
     
-    ISIdiom idiom = [[[self currentIdioms] objectAtIndex:idiomIndex] integerValue];
-    NSArray* options = [self.selectedProduct applicableOptionsForIdiom:idiom];
-    NSMutableArray* optionTitles = [NSMutableArray arrayWithCapacity:[options count]];
-    for (id opt in options) {
-        [optionTitles addObject:[ISIdioms nameForOption:[opt integerValue] inIdiom:idiom]];
+    if (self.currentIdiomIndex + 1 > [[self currentIdioms] count]){
+        // FINISHED ASKING?
+        self.currentSku = [self.selectedProduct skuNameForIdiomsAndValues:self.currentDeviceIdioms];
+        NSLog(@"finished. SKU = %@, Name = %@", self.currentSku, self.currentName);
+        
+        // Save device
+        [ISProductsStore saveProductWithName:self.currentName sku:self.currentSku];
+        [ISProductsStore setLastUsedProductName:self.currentName];
+        [self performSegueWithIdentifier:kSegueAvailability sender:self];
+        return;
+    } else {
+        // SHOW IDIOM
+        ISIdiom idiom = [[[self currentIdioms] objectAtIndex:idiomIndex] integerValue];
+        
+        if ([self.selectedProduct respondsToSelector:@selector(shouldAskIdiom:forIdiomsAndValues:)]){
+            BOOL showThisIdioom = [self.selectedProduct shouldAskIdiom:idiom forIdiomsAndValues:self.currentDeviceIdioms];
+            if (!showThisIdioom){
+                [self showActionSheetForIdiom:self.currentIdiomIndex + 1]; // show next idiom
+                return;
+            }
+        }
+        
+        NSArray* options = [self.selectedProduct applicableOptionsForIdiom:idiom];
+        NSMutableArray* optionTitles = [NSMutableArray arrayWithCapacity:[options count]];
+        for (id opt in options) {
+            [optionTitles addObject:[ISIdioms nameForOption:[opt integerValue] inIdiom:idiom]];
+        }
+        
+        UIActionSheet* sheet = [[UIActionSheet alloc] init];
+        sheet.title = [ISIdioms titleForIdiom:idiom];
+        sheet.delegate = self;
+        for (NSString* optionTitle in optionTitles) {
+            [sheet addButtonWithTitle:optionTitle];
+        }
+        sheet.cancelButtonIndex = [sheet addButtonWithTitle:@"Cancel"];
+        [sheet showInView:self.tableView];
     }
-    
-    UIActionSheet* sheet = [[UIActionSheet alloc] init];
-    sheet.title = [ISIdioms titleForIdiom:idiom];
-    sheet.delegate = self;
-    for (NSString* optionTitle in optionTitles) {
-        [sheet addButtonWithTitle:optionTitle];
-    }
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:@"Cancel"];
-    [sheet showInView:self.tableView];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -147,18 +181,7 @@ bool wasCancel;
     if (wasCancel)
         return;
     
-    if ([[self currentIdioms] count] == self.currentIdiomIndex + 1){
-        self.currentSku = [self.selectedProduct skuNameForIdiomsAndValues:self.currentDeviceIdioms];
-        NSLog(@"finished. SKU = %@, Name = %@", self.currentSku, self.currentName);
-        
-        // Save device
-        [ISProductsStore saveProductWithName:self.currentName sku:self.currentSku];
-        [ISProductsStore setLastUsedProductName:self.currentName];
-        [self performSegueWithIdentifier:kSegueAvailability sender:self];
-    } else {
-        // show next idiom
-        [self showActionSheetForIdiom:self.currentIdiomIndex + 1];
-    }
+    [self showActionSheetForIdiom:self.currentIdiomIndex + 1];
 }
 
 #pragma mark - Segue methods

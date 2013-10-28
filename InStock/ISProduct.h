@@ -14,9 +14,11 @@
 +(NSString*)name;
 +(NSArray*)applicableIdioms;
 +(NSArray*)applicableOptionsForIdiom:(ISIdiom)idiom;
-+(NSString*)skuNameForIdiomsAndValues:(NSDictionary*)dict;
++(NSString*)skuNameForIdiomsAndValues:(NSDictionary*)responses;
 
 @optional
++(NSString*)fullName;
 +(NSString*)iconImageName;
++(BOOL)shouldAskIdiom:(ISIdiom)idiom forIdiomsAndValues:(NSDictionary*)responses;
 
 @end

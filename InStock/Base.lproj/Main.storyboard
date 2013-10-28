@@ -21,7 +21,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="iPhone 4s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qhp-no-W1B">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="iPhone 4s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="Qhp-no-W1B" userLabel="Product Name">
                                             <rect key="frame" x="55" y="0.0" width="230" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -29,48 +29,6 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="cart.png" id="v5u-cL-CkG">
-                                            <rect key="frame" x="15" y="9" width="25" height="25"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" textLabel="bUZ-LX-BMI" imageView="K5V-lE-BGD" style="IBUITableViewCellStyleDefault" id="94p-Vk-O0g">
-                                <rect key="frame" x="0.0" y="163" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="94p-Vk-O0g" id="WK6-wP-eRS">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="iPhone 5s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bUZ-LX-BMI">
-                                            <rect key="frame" x="55" y="0.0" width="230" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="cart.png" id="K5V-lE-BGD">
-                                            <rect key="frame" x="15" y="9" width="25" height="25"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" textLabel="rjt-qH-gqE" imageView="kua-wi-VEk" style="IBUITableViewCellStyleDefault" id="XbC-jS-bo4">
-                                <rect key="frame" x="0.0" y="207" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XbC-jS-bo4" id="4uE-VY-wtf">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="iPhone 5c" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rjt-qH-gqE">
-                                            <rect key="frame" x="55" y="0.0" width="230" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="cart.png" id="kua-wi-VEk">
                                             <rect key="frame" x="15" y="9" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
@@ -104,7 +62,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="273" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Apple Store, Bellevue Square" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E0c-4r-9VL">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Apple Store, Bellevue Square" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="E0c-4r-9VL">
                                             <rect key="frame" x="15" y="9" width="236" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -149,7 +107,7 @@
             </objects>
             <point key="canvasLocation" x="591" y="132"/>
         </scene>
-        <!--Saved Products View Controller - Bookmarked Items-->
+        <!--Saved Products View Controller - Bookmarks-->
         <scene sceneID="NjU-At-XH5">
             <objects>
                 <tableViewController id="O4X-pQ-6gj" customClass="ISSavedProductsViewController" sceneMemberID="viewController">
@@ -165,7 +123,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wS1-XB-9F7">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" id="wS1-XB-9F7">
                                             <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <string key="text">iPhone 5c Yellow 16 GB Verizon
@@ -183,7 +141,7 @@
                             <outlet property="delegate" destination="O4X-pQ-6gj" id="fBn-GS-Yx7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bookmarked Items" id="9Dw-qO-sng">
+                    <navigationItem key="navigationItem" title="Bookmarks" id="9Dw-qO-sng">
                         <barButtonItem key="backBarButtonItem" title="Back" id="CHe-yh-3IT"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="V3s-Vs-Lh4">
                             <connections>

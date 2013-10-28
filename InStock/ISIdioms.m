@@ -55,11 +55,12 @@
                  N(ISNetworkCarrierVerizon) : @"Verizon",
                  N(ISNetworkCarrierSprint) : @"Sprint",
                  N(ISNetworkCarrierTmobileContractFree) : @"T-Mobile (Unlocked)",
-                 N(ISNetworkCarrierUnlockedSimFree) : @"SIM-Free (Unlocked)"
+                 N(ISNetworkCarrierUnlockedSimFree) : @"SIM-Free (Unlocked)",
+                 N(ISNetworkCarrierTmobile) : @"T-Mobile"
                  },
          N(ISIdiomiPadType): @{
                  N(ISiPadTypeWifi) : @"Wi-Fi only",
-                 N(ISiPadTypeWifiCellular) : @"Wi-Fi + 3G"
+                 N(ISiPadTypeWifiCellular) : @"Wi-Fi + Cellular"
                  },
          N(ISIdiomMacBookScreenSize): @{
                  N(ISMacBookScreenSize11inch) : @"11-inch Display",
