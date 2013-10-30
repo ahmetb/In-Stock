@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Luminous Apps. All rights reserved.
 //
 
-#import <FlatUIKit/FlatUIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <AddressBook/AddressBook.h>
 #import <iAd/iAd.h>

@@ -10,7 +10,6 @@
 #import "ISAvailabilityViewController.h"
 #import "ISProducts.h"
 #import <iAd/iAd.h>
-#import <FlatUIKit/UITableViewCell+FlatUI.h>
 
 
 @implementation ISProductsViewController

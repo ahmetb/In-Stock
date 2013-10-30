@@ -8,7 +8,6 @@
 
 #import "ISAppDelegate.h"
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
-#import <FlatUIKit/FlatUIKit.h>
 
 @implementation ISAppDelegate
 

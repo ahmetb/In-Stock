@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Luminous Apps. All rights reserved.
 //
 
-#import <FlatUIKit/FlatUIKit.h>
 #import <iAd/iAd.h>
 
 #define kSegueAvailability @"CheckAvailability"
