@@ -117,7 +117,7 @@ CLLocationManager* locationManager;
         } else {
             NSLog(@"Showing existing sku %@ listing", self.sku);
         }
-        [self retrieveLocation:nil];
+        //[self retrieveLocation:nil];
     }
 }
 
@@ -250,7 +250,7 @@ CLLocationManager* locationManager;
         color = [UIColor nephritisColor];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        color = [UIColor pomegranateColor];
+        color = [UIColor alizarinColor];
     }
     [[cell detailTextLabel] setTextColor: ([self isStoreAvailableAtIndex:indexPath.row] ? color : color)];
     
@@ -275,6 +275,7 @@ CLLocationManager* locationManager;
     NSString* body = [NSString stringWithFormat:@"%@\n%@, %@", [self storeOriginalNameAtIndex:i],
                       [self storeCityAtIndex:i], [self storeStateAtIndex:i]];
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:msg message:body delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Call", nil];
+    lastPhoneNumber = [self storePhoneAtIndex:i];
     [alert show];
 }
 
