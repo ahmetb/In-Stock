@@ -247,10 +247,16 @@ CLLocationManager* locationManager;
     UIColor* color;
     if ([self isStoreAvailableAtIndex:indexPath.row]){
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
-        color = [UIColor nephritisColor];
+        color = [UIColor colorWithRed:0x27/255.0 green:0xae/255.0 blue:0x60/255.0 alpha:1.0f];
+        
+        // make bold
+        [[cell detailTextLabel] setFont:[UIFont boldSystemFontOfSize:cell.detailTextLabel.font.pointSize]];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        color = [UIColor alizarinColor];
+        color = [UIColor colorWithRed:0xe7/255.0 green:0x4c/255.0 blue:0x3c/255.0 alpha:1.0f];
+        
+        // reset bold
+        [[cell detailTextLabel] setFont:[UIFont systemFontOfSize:cell.detailTextLabel.font.pointSize]];
     }
     [[cell detailTextLabel] setTextColor: ([self isStoreAvailableAtIndex:indexPath.row] ? color : color)];
     
