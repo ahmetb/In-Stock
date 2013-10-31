@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GAI.h>
+#import <GAIDictionaryBuilder.h>
+#import <GAIFields.h>
 
 @interface ISSavedProductsViewController : UITableViewController
 

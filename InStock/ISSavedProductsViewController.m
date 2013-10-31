@@ -15,9 +15,14 @@
 
 @implementation ISSavedProductsViewController
 
-
 -(IBAction)dismiss:(id)sender{
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:(NSStringFromClass([self class]))];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Table view data source
@@ -48,14 +53,10 @@
     return cell;
 }
 
-
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // all items are deletable.
-    return YES;
+    return YES; // all items are deletable.
 }
-
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,6 +79,10 @@
             }
         }
         
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+                                                              action:@"delete_product"
+                                                               label:nil value:[NSNumber numberWithBool:wasLastUsed]] build]];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -86,7 +91,11 @@
     
     id product = [[ISProductsStore savedProducts] objectAtIndex:indexPath.row];
     NSString* name = [product objectAtIndex:0/*name*/];
-//    NSString* sku = [product objectAtIndex:1/*sku*/];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+                                                          action:@"switch_product"
+                                                           label:nil value:nil] build]];
     // Set as last used product
     [ISProductsStore setLastUsedProductName:name];
     

@@ -9,6 +9,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <AddressBook/AddressBook.h>
 #import <iAd/iAd.h>
+#import <GAI.h>
+#import <GAIDictionaryBuilder.h>
+#import <GAIFields.h>
 
 @interface ISAvailabilityViewController : UITableViewController <UIAlertViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, ADBannerViewDelegate>
 

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <iAd/iAd.h>
+#import <GAI.h>
+#import <GAIDictionaryBuilder.h>
+#import <GAIFields.h>
 
 @interface ISProductsViewController : UITableViewController <UIActionSheetDelegate, ADBannerViewDelegate>
 

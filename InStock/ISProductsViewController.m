@@ -9,8 +9,6 @@
 #import "ISProductsViewController.h"
 #import "ISAvailabilityViewController.h"
 #import "ISProducts.h"
-#import <iAd/iAd.h>
-
 
 @implementation ISProductsViewController
 
@@ -53,6 +51,15 @@ bool wasCancel;
         // restore cancel button
         [[self navigationItem] setRightBarButtonItem:[self btnCancel]];
     }
+}
+
+NSDate* start;
+-(void)viewDidAppear:(BOOL)animated{
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:(NSStringFromClass([self class]))];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    start = [NSDate date];
 }
 
 #pragma mark - iAd Delegate
@@ -145,6 +152,28 @@ bool wasCancel;
         [ISProductsStore setLastUsedProductName:self.currentName];
         self.isNewProductRequested = NO; // reset
         
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        
+        // Record user's finishing time for picking a product
+        if(start){
+            NSTimeInterval took = [[NSDate date] timeIntervalSinceDate:start];
+            start = nil;
+            [tracker send: [[GAIDictionaryBuilder
+                       createTimingWithCategory:@"user_action"
+                       interval:[NSNumber numberWithDouble:took]
+                       name:@"pick_a_product" label:nil] build]];
+        }
+        
+        // Record picked product name
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"user_action" action:@"picked_product"
+                                                               label:[[[self selectedProduct] class] name]
+                                                               value:nil] build]];
+        
+        // Record picked product model
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"user_action" action:@"picked_product_model"
+                                                               label:self.currentName
+                                                               value:nil] build]];
+        
         [self dismiss:nil];
         return;
     } else {
@@ -176,7 +205,7 @@ bool wasCancel;
     }
 }
 
--(NSArray*)applicableOptionsForSelectedProductForIdiom:(ISIdiom)idiom{
+-(NSArray*)applicableOptionsForSelectedProductForIdiom:(ISIdiom)idiom {
     if ([self.selectedProduct respondsToSelector:@selector(applicableOptionsForIdiom:inIdiomsAndValues:)]){
         return [self.selectedProduct applicableOptionsForIdiom:idiom inIdiomsAndValues:self.currentDeviceIdioms];
     }
@@ -210,6 +239,12 @@ bool wasCancel;
 
 -(IBAction)dismiss:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+                                                          action:@"cancel_product_pick"
+                                                           label:nil
+                                                           value:nil] build]];
 }
 
 @end

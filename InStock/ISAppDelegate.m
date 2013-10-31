@@ -7,13 +7,27 @@
 //
 
 #import "ISAppDelegate.h"
+#import <GAI.h>
+#import <GAIFields.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 
 @implementation ISAppDelegate
 
 -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    [self initializeGoogleAnalytics];
     return YES;
+}
+
+
+static NSString *const kGaPropertyId = @"UA-45321252-1";
+-(void)initializeGoogleAnalytics{
+    // Set up Google Analytics
+    [[GAI sharedInstance] setTrackUncaughtExceptions:YES];
+    [[GAI sharedInstance] setDispatchInterval:4]; // secs
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    [[GAI sharedInstance] setDryRun:NO];
+    [[GAI sharedInstance] trackerWithTrackingId:kGaPropertyId]; // set default tracker instance
 }
 
 @end

@@ -12,7 +12,7 @@
 #import <AFNetworking/AFNetworking.h>
 
 #define kSeguePickProduct @"PickProduct"
-
+#define kSegueShowBookmarks @"ShowBookmarks"
 
 @implementation ISAvailabilityViewController
 
@@ -22,14 +22,15 @@ NSString* lastLoadedSku;
 NSString* lastPhoneNumber;
 NSUInteger lastStoreIndex;
 BOOL backFromAd;
+NSDate* lastRefreshStart;
 
 CLLocationManager* locationManager;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.navigationController.navigationItem.hidesBackButton = YES;
-    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-
+    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    
     if (!operationManager){
         operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://store.apple.com"]];
         id responseSerializer = [AFJSONResponseSerializer serializer];
@@ -66,7 +67,7 @@ CLLocationManager* locationManager;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
     id lastProduct = [ISProductsStore lastUsedProduct];
     if (!lastProduct){
         stores = nil;
@@ -106,6 +107,10 @@ CLLocationManager* locationManager;
             NSLog(@"Showing existing sku %@ listing", self.sku);
         }
     }
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:(NSStringFromClass([self class]))];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - iAd Delegate
@@ -127,7 +132,7 @@ CLLocationManager* locationManager;
     return YES;
 }
 
-#pragma mark - Location Manager delegate 
+#pragma mark - Location Manager delegate
 
 -(IBAction)retrieveLocation:(id)sender{
     if (!locationManager){
@@ -141,6 +146,7 @@ CLLocationManager* locationManager;
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     CLLocation* lastLocation = [locations lastObject];
     [locationManager stopUpdatingLocation]; // stop collection location
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
     CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
     if (geoCoder){
@@ -152,8 +158,20 @@ CLLocationManager* locationManager;
                     NSLog(@"new zip code found, refresh.");
                     [ISProductsStore setUserZipCode:zip];
                     [self refresh];
+                    
+                    // Track found zip code
+                    [tracker send:[[GAIDictionaryBuilder
+                                    createEventWithCategory:@"location" action:@"found_zip"
+                                    label:zip value:nil] build]];
                 }
             } else {
+                
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"location_error"
+                                                                      action:@"reverse_geocoding"
+                                                                       label:[NSString stringWithFormat:@"%f,%f", lastLocation.coordinate.latitude, lastLocation.coordinate.longitude]
+                                                                       value:nil] build]];
+                [self refresh];
+                
                 NSLog(@"could not find zip code for location");
             }
         }];
@@ -165,29 +183,40 @@ CLLocationManager* locationManager;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    NSString* errorEvent;
     switch([error code])
     {
         case kCLErrorNetwork: // general, network-related error
-            {
+        {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please make sure you are not in airplane mode and connected to internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
-            }
+            errorEvent = @"network";
+        }
             break;
         case kCLErrorDenied:
-            {
+        {
             // open url prefs:root=LOCATION_SERVICES
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Allow Location Services" message:@"\nGo to Settings→Privacy→Location and allow this app to use your location" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
-            }
+            errorEvent = @"denied_location";
+        }
             break;
         default:
-            {
+        {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"We could not retrieve your current location. Try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             NSLog(@"Error code: %d", (int)error.code);
+            errorEvent = @"unhandled";
             [alert show];
-            }
+        }
             break;
     }
+    [tracker send:[[GAIDictionaryBuilder
+                    createEventWithCategory:@"location_error"
+                    action:errorEvent
+                    label:[NSString stringWithFormat:@"CLError:%d", error.code]
+                    value:nil] build]];
 }
 
 #pragma mark - Table view data source
@@ -202,7 +231,19 @@ CLLocationManager* locationManager;
     return [stores count];
 }
 
-- (void)refresh {
+// method assigned to pull-to-refresh action, calls -(void)refresh
+-(void)pullToRefresh{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+                                                          action:@"pull_to_refresh"
+                                                           label:nil
+                                                           value:nil] build]];
+    //TODO track pull to refresh counts and intervals
+    [self refresh];
+}
+
+-(void)refresh {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     NSString* url = @"http://store.apple.com/us/retail/availabilitySearch";
     id params = @{
                   @"parts.0": [self sku],
@@ -212,6 +253,19 @@ CLLocationManager* locationManager;
         id body = [responseObject objectForKey:@"body"];
         stores = [body objectForKey:@"stores"];
         NSLog(@"%d stores found",(int)[stores count]);
+        
+        if (lastRefreshStart){
+            [tracker send:
+             [[GAIDictionaryBuilder
+               createTimingWithCategory:@"resource"
+               interval:[NSNumber numberWithDouble:[[NSDate date]timeIntervalSinceDate:lastRefreshStart]]
+               name:@"store_availability" label:nil] build]];
+        }
+        
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"stores"
+                                                              action:@"loaded"
+                                                               label:nil
+                                                               value:[NSNumber numberWithInt:[stores count]]] build]];
         
         [self.refreshControl endRefreshing];
         [[self tableView] reloadData];
@@ -224,6 +278,7 @@ CLLocationManager* locationManager;
         [self.refreshControl endRefreshing];
         lastLoadedSku = nil;
     }];
+    lastRefreshStart = [NSDate date];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -275,9 +330,14 @@ CLLocationManager* locationManager;
 -(void)makeCallToPhoneNumber:(NSString*)phoneNumber{
     // sanitize phone number (replace space with '-')
     NSString* uri = [[@"tel:" stringByAppendingString:phoneNumber]
-                stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+                     stringByReplacingOccurrencesOfString:@" " withString:@"-"];
     id url = [NSURL URLWithString:uri];
-    if ([[UIApplication sharedApplication] canOpenURL:url]){
+    if ([self canMakeCalls]){
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder
+                        createEventWithCategory:@"store_action"
+                        action:@"call" label:phoneNumber value:nil] build]];
+        
         [[UIApplication sharedApplication] openURL:url];
     } else {
         NSLog(@"device cannot make phone calls");
@@ -328,14 +388,26 @@ CLLocationManager* locationManager;
         return;
     }
     
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
     if ([self canOpenGoogleMaps] && buttonIndex == 0){
         NSString* url = [[NSString stringWithFormat:@"comgooglemaps://?q=%@", [self storeAddressAtIndex:lastStoreIndex]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        
+        
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"store_action"
+                                                              action:@"google_maps"
+                                                               label:nil value:nil] build]];
+        
+        
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     } else if (([self canOpenGoogleMaps] && buttonIndex == 1) || (![self canOpenGoogleMaps] && buttonIndex == 0 )){
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"store_action"
+                                                              action:@"apple_maps"
+                                                               label:nil value:nil] build]];
+        
         NSString* url = [[NSString stringWithFormat:@"http://maps.apple.com/?q=%@", [self storeAddressAtIndex:lastStoreIndex]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     } else if (([self canOpenGoogleMaps] && buttonIndex == 2) || (![self canOpenGoogleMaps] && buttonIndex == 1)){
-        NSLog(@"Call");
         [self makeCallToPhoneNumber:[self storePhoneAtIndex:lastStoreIndex]];
     }
     
@@ -407,6 +479,27 @@ CLLocationManager* locationManager;
 -(BOOL)canMakeCalls{
     NSURL *phoneUrlBase = [NSURL URLWithString:@"tel:"];
     return [[UIApplication sharedApplication] canOpenURL:phoneUrlBase];
+}
+
+#pragma mark - Segue handlers
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    if ([[segue identifier] isEqualToString:kSegueShowBookmarks]){
+        [tracker send:[[GAIDictionaryBuilder
+                        createEventWithCategory:@"ui_action"
+                        action:@"show_bookmarks"
+                        label:nil
+                        value:nil] build]];
+    } else if ([[segue identifier] isEqualToString:kSeguePickProduct] && [[ISProductsStore savedProducts] count] > 0) {
+        // add new product
+        [tracker send:[[GAIDictionaryBuilder
+                        createEventWithCategory:@"ui_action"
+                        action:@"add_product"
+                        label:nil
+                        value:nil] build]];
+    }
 }
 
 @end
