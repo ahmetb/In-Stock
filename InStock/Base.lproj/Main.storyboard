@@ -5,6 +5,21 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3745"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="yGz-0m-4fG">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="v0L-T2-VJA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vI4-zI-ihm">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hqs-Mb-UTo" kind="relationship" relationship="rootViewController" id="8Zn-aF-1tB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WHl-kr-e4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="802" y="-236"/>
+        </scene>
         <!--Products View Controller - Pick a Product-->
         <scene sceneID="OeI-Og-WDN">
             <objects>
@@ -37,14 +52,20 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pick a Product" id="6rC-B1-hbz"/>
+                    <navigationItem key="navigationItem" title="Pick a Product" id="6rC-B1-hbz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="2XG-L1-iiz">
+                            <connections>
+                                <action selector="dismiss:" destination="hqs-Mb-UTo" id="8l6-uM-uv9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="z4R-ke-jKD" kind="push" identifier="CheckAvailability" id="0nK-kT-XUZ"/>
+                        <outlet property="btnCancel" destination="2XG-L1-iiz" id="Rox-iz-w5i"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="teS-o6-Bdo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202" y="132"/>
+            <point key="canvasLocation" x="1231" y="-236"/>
         </scene>
         <!--Availability View Controller - Nearby Stores-->
         <scene sceneID="rJP-Hr-cFY">
@@ -87,6 +108,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Nearby Stores" id="GH2-br-qaR">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="bZs-uo-tLD">
+                            <connections>
+                                <segue destination="v0L-T2-VJA" kind="modal" identifier="PickProduct" id="yEM-kh-PZw"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="534-qJ-r7Z">
                             <connections>
                                 <segue destination="6KM-tk-l2a" kind="modal" id="mfB-uE-aWg"/>
@@ -99,8 +125,13 @@
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zS6-0d-5hX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="IJj-kR-i9e">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="591" y="132"/>
+            <point key="canvasLocation" x="228" y="100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="21U-an-4uv">
@@ -115,7 +146,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEh-Rb-cnC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="-602"/>
+            <point key="canvasLocation" x="802" y="496"/>
         </scene>
         <!--Saved Products View Controller - Recent Products-->
         <scene sceneID="NjU-At-XH5">
@@ -161,7 +192,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jjy-Xp-7Hw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085" y="-602"/>
+            <point key="canvasLocation" x="1231" y="496"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CYa-hB-gcO">
@@ -175,12 +206,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="hqs-Mb-UTo" kind="relationship" relationship="rootViewController" id="zWD-ex-Pwm"/>
+                        <segue destination="z4R-ke-jKD" kind="relationship" relationship="rootViewController" id="pgt-Oi-X0E"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imf-so-Y9Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-337" y="132"/>
+            <point key="canvasLocation" x="-339" y="100"/>
         </scene>
     </scenes>
     <resources>

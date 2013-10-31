@@ -11,6 +11,9 @@
 #import "ISProductsStore.h"
 #import <AFNetworking/AFNetworking.h>
 
+#define kSeguePickProduct @"PickProduct"
+
+
 @implementation ISAvailabilityViewController
 
 AFHTTPRequestOperationManager* operationManager;
@@ -18,7 +21,6 @@ NSArray* stores;
 NSString* lastLoadedSku;
 NSString* lastPhoneNumber;
 NSUInteger lastStoreIndex;
-BOOL canOpenGoogleMaps = NO;
 BOOL backFromAd;
 
 CLLocationManager* locationManager;
@@ -28,45 +30,6 @@ CLLocationManager* locationManager;
     self.navigationController.navigationItem.hidesBackButton = YES;
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
 
-    self.banner = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    [self.banner setDelegate:self];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    [locationManager stopUpdatingLocation];
-    
-    // If it is going back, prevent auto-redirect in root view controller.
-    if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
-        // back button was pressed. We know this is true because self is no longer
-        // in the navigation stack.
-        ISProductsViewController* vc = (ISProductsViewController*)[self.navigationController.viewControllers objectAtIndex:0];
-        
-        if ([vc class] == [ISProductsViewController class]){
-            [vc setIsNewProductRequested:YES];
-            NSLog(@"redirecting user to pick a new product");
-        }
-    }
-    [super viewWillDisappear:animated];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    id lastProduct = [ISProductsStore lastUsedProduct];
-    if (lastProduct){
-        self.sku = [lastProduct objectAtIndex:iProductSku];
-        self.title = [lastProduct objectAtIndex:iProductName];
-    } else {
-        NSLog(@"last device not found");
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
-    
-    if (![self.sku isEqualToString:lastLoadedSku]){
-        // remove existing list, different SKU received
-        stores = nil;
-    }
-    
     if (!operationManager){
         operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://store.apple.com"]];
         id responseSerializer = [AFJSONResponseSerializer serializer];
@@ -91,33 +54,57 @@ CLLocationManager* locationManager;
             }
         }];
     }
+    
+    self.banner = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    [self.banner setDelegate:self];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [locationManager stopUpdatingLocation];
+    [super viewWillDisappear:animated];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+    id lastProduct = [ISProductsStore lastUsedProduct];
+    if (!lastProduct){
+        stores = nil;
+        [self.tableView reloadData]; // when devices are removed from bookmarks, remove table view data
+        [self setTitle:@"Pick a Product"];
+    }
 }
 
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    if(![ISProductsStore lastUsedProduct]){
-        lastLoadedSku = nil;
-    }
-    
-    if (backFromAd){
-        NSLog(@"back from ad");
-        backFromAd = NO;
+    if (backFromAd){ NSLog(@"back from ad"); backFromAd = NO;
         return;
     }
     
-    // If location does not exist fetch it first
+    id lastProduct = [ISProductsStore lastUsedProduct];
+    
+    if (!lastProduct){
+        NSLog(@"last device not found. show add screen");
+        [self performSegueWithIdentifier:kSeguePickProduct sender:nil];
+        return;
+    }
+    self.sku = [lastProduct objectAtIndex:iProductSku];
+    self.title = [lastProduct objectAtIndex:iProductName];
+    
+    // If location does not exist fetch it by using current location
     if (![ISProductsStore userZipCode]){
         // Retrieve zip code, get user's location
         [self retrieveLocation:nil];
     } else {
         if (![self.sku isEqualToString:lastLoadedSku]){
+            stores = nil;
+            [self.tableView reloadData]; // show table initially empty before loading a new one
             [self refresh];
         } else {
             NSLog(@"Showing existing sku %@ listing", self.sku);
         }
-        //[self retrieveLocation:nil];
     }
 }
 
@@ -293,7 +280,11 @@ CLLocationManager* locationManager;
     if ([[UIApplication sharedApplication] canOpenURL:url]){
         [[UIApplication sharedApplication] openURL:url];
     } else {
-        NSLog(@"device cannot make phone calls"); // TODO alert
+        NSLog(@"device cannot make phone calls");
+        [[[UIAlertView alloc]
+          initWithTitle:@"Cannot Make Phone Calls"
+          message:[@"Your device is not a phone.\nCall " stringByAppendingString:phoneNumber]
+          delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
     }
 }
 
@@ -319,15 +310,8 @@ CLLocationManager* locationManager;
     actionSheet.title = [self storeOriginalNameAtIndex:indexPath.row];
     actionSheet.delegate = self;
     
-    NSURL *gMapsUrlBase = [NSURL URLWithString:@"comgooglemaps://"];
-    if ([[UIApplication sharedApplication] canOpenURL:gMapsUrlBase]){
-        canOpenGoogleMaps = YES;
-        NSLog(@"Supports Google Maps");
+    if ([self canMakeCalls])
         [actionSheet addButtonWithTitle:@"Open in Google Maps"];
-    } else {
-        canOpenGoogleMaps = NO;
-        NSLog(@"Does not support Google Maps");
-    }
     
     [actionSheet addButtonWithTitle:@"Open in Maps"];
     [actionSheet addButtonWithTitle:@"Call"];
@@ -338,21 +322,19 @@ CLLocationManager* locationManager;
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    int base = canOpenGoogleMaps ? 1 : 0;
+    int base = [self canOpenGoogleMaps] ? 1 : 0;
     if (buttonIndex == base+2){
         NSLog(@"Cancel");
         return;
     }
     
-    if (canOpenGoogleMaps && buttonIndex == 0){
-        NSLog(@"Google Maps");
+    if ([self canOpenGoogleMaps] && buttonIndex == 0){
         NSString* url = [[NSString stringWithFormat:@"comgooglemaps://?q=%@", [self storeAddressAtIndex:lastStoreIndex]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-    } else if ((canOpenGoogleMaps && buttonIndex == 1) || (!canOpenGoogleMaps && buttonIndex == 0 )){
+    } else if (([self canOpenGoogleMaps] && buttonIndex == 1) || (![self canOpenGoogleMaps] && buttonIndex == 0 )){
         NSString* url = [[NSString stringWithFormat:@"http://maps.apple.com/?q=%@", [self storeAddressAtIndex:lastStoreIndex]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-        NSLog(@"iOS Maps");
-    } else if ((canOpenGoogleMaps && buttonIndex == 2) || (!canOpenGoogleMaps && buttonIndex == 1)){
+    } else if (([self canOpenGoogleMaps] && buttonIndex == 2) || (![self canOpenGoogleMaps] && buttonIndex == 1)){
         NSLog(@"Call");
         [self makeCallToPhoneNumber:[self storePhoneAtIndex:lastStoreIndex]];
     }
@@ -413,6 +395,18 @@ CLLocationManager* locationManager;
 -(BOOL)isStoreAvailableAtIndex:(NSUInteger)i{
     id av = [[[self storeAtIndex:i] objectForKey:@"partsAvailability"] objectForKey:self.sku];
     return [[av objectForKey:@"storeSelectionEnabled"] boolValue];
+}
+
+#pragma mark - CanOpenURL helpers
+
+-(BOOL)canOpenGoogleMaps{
+    NSURL *gMapsUrlBase = [NSURL URLWithString:@"comgooglemaps://"];
+    return [[UIApplication sharedApplication] canOpenURL:gMapsUrlBase];
+}
+
+-(BOOL)canMakeCalls{
+    NSURL *phoneUrlBase = [NSURL URLWithString:@"tel:"];
+    return [[UIApplication sharedApplication] canOpenURL:phoneUrlBase];
 }
 
 @end

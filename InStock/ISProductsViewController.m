@@ -43,16 +43,15 @@ bool wasCancel;
     [self.banner setDelegate:self];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
-    if (self.isNewProductRequested){
-        return;
-    } else if ([ISProductsStore lastUsedProduct]){
-        NSLog(@"Last used product record found...");
-        [self performSegueWithIdentifier:kSegueAvailability sender:self];
+    if (![ISProductsStore savedProducts] || ![ISProductsStore lastUsedProduct]){
+        // hide cancel button if user has to choose
+        [[self navigationItem] setRightBarButtonItem:nil];
     } else {
-        NSLog(@"No last product record found. Listing products...");
+        // restore cancel button
+        [[self navigationItem] setRightBarButtonItem:[self btnCancel]];
     }
 }
 
@@ -145,7 +144,8 @@ bool wasCancel;
         [ISProductsStore saveProductWithName:self.currentName sku:self.currentSku];
         [ISProductsStore setLastUsedProductName:self.currentName];
         self.isNewProductRequested = NO; // reset
-        [self performSegueWithIdentifier:kSegueAvailability sender:self];
+        
+        [self dismiss:nil];
         return;
     } else {
         // SHOW IDIOM
@@ -206,14 +206,10 @@ bool wasCancel;
     [self showActionSheetForIdiom:self.currentIdiomIndex + 1];
 }
 
-#pragma mark - Segue methods
+#pragma mark - Navigation integration methods
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:kSegueAvailability]){
-        NSLog(@"Performing segue...");
-    } else {
-        NSLog(@"unprepared segue %@", [segue identifier]);
-    }
+-(IBAction)dismiss:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

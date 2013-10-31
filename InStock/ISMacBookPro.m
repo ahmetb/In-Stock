@@ -27,7 +27,7 @@
 }
 
 +(NSString*)skuNameForIdiomsAndValues:(NSDictionary*)dict {
-    return @"MD101LL/A";//TODO
+    return @"MD101LL/A"; // only one exists
 }
 
 @end

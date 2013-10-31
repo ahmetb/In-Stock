@@ -69,6 +69,8 @@
         [ISProductsStore removeProductAtIndex:indexPath.row];
         
         if (wasLastUsed){
+            [ISProductsStore setLastUsedProductName:nil]; // clear anyway
+            
             if ([[ISProductsStore savedProducts] count] > 0){
                 // if there is only one left, make it last used.
                 id lastProduct = [[ISProductsStore savedProducts] objectAtIndex:0];

@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Luminous Apps. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <iAd/iAd.h>
-
-#define kSegueAvailability @"CheckAvailability"
 
 @interface ISProductsViewController : UITableViewController <UIActionSheetDelegate, ADBannerViewDelegate>
 
@@ -24,5 +23,8 @@
 @property (nonatomic, retain) NSString* currentName;
 
 @property (nonatomic, retain) ADBannerView* banner;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnCancel;
+
+-(IBAction)dismiss:(id)sender;
 
 @end
