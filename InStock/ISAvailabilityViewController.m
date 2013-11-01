@@ -310,7 +310,7 @@ CLLocationManager* locationManager;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([self isStoreAvailableAtIndex:indexPath.row]){
+    if ([self isStoreAvailableAtIndex:indexPath.row] && [self canMakeCalls]){
         [self callStoreAtIndex:indexPath.row];
     } else {
         // show action sheet

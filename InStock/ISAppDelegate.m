@@ -29,9 +29,8 @@ static NSString *const kGaPropertyId = @"UA-45321252-1";
 #ifdef DEBUG
     [[GAI sharedInstance] setDryRun:YES];
     NSLog(@"GA set to dryrun");
-#else
-
 #endif
+    
     [[GAI sharedInstance] trackerWithTrackingId:kGaPropertyId]; // set default tracker instance
 }
 
