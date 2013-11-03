@@ -1,7 +1,8 @@
 .DS_Store
 Podfile.lock
 Pods/
-InStock.xcodeworkspace/
-InStock.xcworkspace/
+*.xcodeworkspace/
+*.xcworkspace/
 **/project.xcworkspace/xcuserdata/
 **/xcuserdata/alp.xcuserdatad/xcdebugger/
+**/project.xcworkspace/xcshareddata/
