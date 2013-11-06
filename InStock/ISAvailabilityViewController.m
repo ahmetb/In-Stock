@@ -15,16 +15,17 @@
 #define kSegueShowBookmarks @"ShowBookmarks"
 
 @implementation ISAvailabilityViewController
+{
+    AFHTTPRequestOperationManager* operationManager;
+    NSArray* stores;
+    NSString* lastLoadedSku;
+    NSString* lastPhoneNumber;
+    NSUInteger lastStoreIndex;
+    BOOL backFromAd;
+    NSDate* lastRefreshStart;
 
-AFHTTPRequestOperationManager* operationManager;
-NSArray* stores;
-NSString* lastLoadedSku;
-NSString* lastPhoneNumber;
-NSUInteger lastStoreIndex;
-BOOL backFromAd;
-NSDate* lastRefreshStart;
-
-CLLocationManager* locationManager;
+    CLLocationManager* locationManager;
+}
 
 -(void)viewDidLoad{
     [super viewDidLoad];
