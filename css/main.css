@@ -1,0 +1,139 @@
+html {
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background: rgba(0,0,0, 0.85);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Open Sans', sans-serif;
+}
+
+::selection {
+    color: #FFF;
+    background: rgba(162,82,151,1.0);
+}
+
+header {
+    margin-bottom: 64px;
+}
+
+h1, h2{
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 680px;
+    display: block;
+}
+
+.wrapper:before, .wrapper:after {
+    content: "";
+    display: table;
+}
+
+.wrapper:after {
+    clear: both;
+}
+
+.wrapper > div { 
+    width: 300px;
+}
+
+.wrapper > div:first-child {
+    float: left
+}
+
+.wrapper > div:last-child {
+    float: right;
+}
+
+a.icon {
+    display: block;
+    margin-top: 4px;
+    width: 280px;
+    height: 280px;
+}
+
+a.icon img {
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    margin-top: 40px;
+    font-size: 50px;
+    letter-spacing: -2px;
+}
+
+h2 {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: 25px;
+    letter-spacing: -0.5px;
+    font-weight: 200;
+    line-height: 36px;
+}
+
+.iphone {
+    width: 380px;
+    height: 798px;
+    padding: 0;
+    padding-top: 117px;
+    padding-left: 32px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url(../img/iphone.png) no-repeat;
+    display: block;
+}
+
+.screen {
+    width: 320px;
+    height: 568px;
+    overflow: hidden;
+    display: block;
+}
+
+article p {
+    font-size: 20px;
+    margin-bottom: 32px;
+    line-height: 32px;
+    font-weight: 400;
+}
+
+article .note {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+div.promo {
+    margin-bottom: 60px;
+}
+
+footer {
+
+    margin-top: 80px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    font-size: 18px;
+    text-align: center;
+    color: rgba(255,255,255, 0.5);
+
+    background: rgba(162,82,151,0.8);
+    border-top: 1px solid rgba(141, 90 ,169, 1);
+}
+
+footer a {
+    color: rgba(255,255,255, 0.5);
+}
+
+footer a:hover {
+    color: rgba(255,255,255, 1);
+    text-decoration: none;
+}
