@@ -20,10 +20,16 @@ When you open up the project on Xcode, it should be ready to run on iOS simulato
 
 ---
 
-## Screenshots 
+## More info
 
-![](/Screenshots/4inch1.png)
-![](/Screenshots/4inch2.png)
+See `Screenshots` directory for sample screens, `Icon` directory for app icon I made.
+
+---
+
+## License
+
+This project uses the follwoing icons by [icons8](http://icons8.com/free-ios-7-icons-in-vector/): iPhone, iPad, Laptop.
+It is [licensed](http://icons8.com/license/) for free under the condition of linking.
 
 ---
 
