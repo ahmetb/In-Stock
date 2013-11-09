@@ -30,3 +30,7 @@ It is [licensed](http://icons8.com/license/) for free under the condition of lin
 ## Known issues
 
 * Cannot compile to 64-bit since Google Analytics iOS SDK has not released an x64 build yet (see [issue](https://code.google.com/p/analytics-issues/issues/detail?id=356)).
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ahmetalpbalkan/in-stock/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
